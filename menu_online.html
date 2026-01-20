@@ -61,4 +61,231 @@
       border-radius:14px;
       padding:12px 14px;
       font-weight:900;
-      letter
+      letter-spacing:.4px;
+      text-transform:uppercase;
+      cursor:pointer;
+      background:var(--btn);
+      color:var(--btnTxt);
+      text-align:center;
+      line-height:1.1;
+
+      /* max 3 per riga, larghezza adattiva */
+      flex:0 1 auto;
+      max-width:calc((100% - 20px) / 3);
+    }
+
+    .catBtn[aria-selected="true"]{
+      outline:3px solid rgba(242,180,0,.35);
+      filter:brightness(1.05);
+    }
+
+    /* tablet */
+    @media (max-width:720px){
+      .catBtn{
+        max-width:calc((100% - 10px) / 2);
+      }
+    }
+
+    /* mobile */
+    @media (max-width:520px){
+      .catBtn{
+        max-width:calc((100% - 10px) / 2);
+        padding:14px;
+      }
+    }
+
+    /* ===== PANNELLO MENU ===== */
+    .panel{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:14px;
+      overflow:hidden;
+      display:none;
+    }
+
+    .panelHead{
+      padding:14px;
+      border-bottom:1px solid #24262a;
+      font-weight:900;
+      letter-spacing:.3px;
+      text-transform:uppercase;
+    }
+
+    .items{
+      padding:6px 14px 12px;
+    }
+
+    .item{
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      padding:10px 0;
+      border-top:1px solid #24262a;
+    }
+
+    .name{
+      font-weight:800;
+    }
+
+    .recipe{
+      margin-top:4px;
+      color:var(--muted);
+      line-height:1.35;
+    }
+
+    .price{
+      white-space:nowrap;
+      font-weight:800;
+    }
+
+    @media (max-width:520px){
+      .item{
+        flex-direction:column;
+      }
+      .price{
+        align-self:flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<div class="wrap">
+  <header>
+    <h1>Menu</h1>
+    <div class="stamp" id="stamp"></div>
+  </header>
+
+  <div id="cats" class="cats"></div>
+
+  <div id="panel" class="panel">
+    <div class="panelHead" id="panelTitle"></div>
+    <div class="items" id="items"></div>
+  </div>
+</div>
+
+<script>
+  const DATA_URL = 'menu_online.json';
+  const POLL_MS = 30000;
+
+  const catsEl = document.getElementById('cats');
+  const panel = document.getElementById('panel');
+  const panelTitle = document.getElementById('panelTitle');
+  const itemsEl = document.getElementById('items');
+  const stamp = document.getElementById('stamp');
+
+  let MENU_CACHE = null;
+  let selectedIndex = -1;
+  let lastGeneratedAt = null;
+  let pollTimer = null;
+
+  function euro(v){
+    if(v === null || v === undefined || v === '') return '';
+    const n = Number(v);
+    if(Number.isNaN(n)) return v;
+    return n.toFixed(n % 1 === 0 ? 0 : 2).replace('.', ',') + ' €';
+  }
+
+  function normGen(g){
+    return g ? String(g).replace('T',' ') : null;
+  }
+
+  function clearSelection(){
+    catsEl.querySelectorAll('.catBtn')
+      .forEach(b => b.setAttribute('aria-selected','false'));
+  }
+
+  function renderCategories(categories){
+    catsEl.innerHTML = '';
+    categories.forEach((cat, idx) => {
+      const b = document.createElement('button');
+      b.className = 'catBtn';
+      b.textContent = cat.name;
+      b.setAttribute('aria-selected','false');
+      b.onclick = () => selectCategory(idx);
+      catsEl.appendChild(b);
+    });
+  }
+
+  function renderItems(cat){
+    itemsEl.innerHTML = '';
+    cat.items.forEach(it => {
+      const row = document.createElement('div');
+      row.className = 'item';
+
+      const left = document.createElement('div');
+      left.innerHTML = `
+        <div class="name">${it.name}</div>
+        ${it.ingredients ? `<div class="recipe">${it.ingredients}</div>` : ''}
+      `;
+
+      const price = document.createElement('div');
+      price.className = 'price';
+      price.textContent = euro(it.price);
+
+      row.appendChild(left);
+      row.appendChild(price);
+      itemsEl.appendChild(row);
+    });
+  }
+
+  function selectCategory(idx){
+    if(selectedIndex === idx){
+      panel.style.display = 'none';
+      clearSelection();
+      selectedIndex = -1;
+      return;
+    }
+
+    selectedIndex = idx;
+    clearSelection();
+    catsEl.children[idx].setAttribute('aria-selected','true');
+
+    const cat = MENU_CACHE.categories[idx];
+    panelTitle.textContent = cat.name;
+    renderItems(cat);
+    panel.style.display = 'block';
+    panel.scrollIntoView({ behavior:'smooth', block:'start' });
+  }
+
+  async function fetchMenu(){
+    const resp = await fetch(`${DATA_URL}?v=${Date.now()}`, {
+      cache:'no-store',
+      headers:{ 'Cache-Control':'no-cache', 'Pragma':'no-cache' }
+    });
+    if(!resp.ok) throw new Error();
+    return await resp.json();
+  }
+
+  async function loadMenu(force=false){
+    try{
+      const MENU = await fetchMenu();
+      const gen = normGen(MENU.generated_at);
+      if(!force && gen && gen === lastGeneratedAt) return;
+
+      lastGeneratedAt = gen;
+      MENU_CACHE = MENU;
+      stamp.textContent = gen ? `Aggiornato: ${gen}` : '';
+
+      renderCategories(MENU.categories);
+      panel.style.display = 'none';
+      selectedIndex = -1;
+    }catch{}
+  }
+
+  function startPolling(){
+    if(pollTimer) return;
+    pollTimer = setInterval(() => {
+      if(document.visibilityState === 'visible') loadMenu(false);
+    }, POLL_MS);
+  }
+
+  loadMenu(true);
+  startPolling();
+
+  document.addEventListener('visibilitychange', () => {
+    if(document.visibilityState === 'visible') loadMenu(false);
+  });
+</script>
+</body>
+</html>
