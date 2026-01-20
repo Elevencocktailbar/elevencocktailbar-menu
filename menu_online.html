@@ -5,25 +5,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Menu - Eleven Cocktail Bar</title>
   <style>
-    :root { --bg:#0f0f10; --card:#17181a; --line:#2a2c2f; --txt:#f4f5f7; --muted:#b9bcc3; }
+    :root {
+      --bg:#0f0f10;
+      --card:#17181a;
+      --line:#2a2c2f;
+      --txt:#f4f5f7;
+      --muted:#b9bcc3;
+      --gold:#f0b400;
+      --gold2:#d59c00;
+    }
     body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin:0; background:var(--bg); color:var(--txt); }
     .wrap { max-width: 980px; margin: 0 auto; padding: 18px; }
     header { display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin-bottom: 14px; }
     h1 { font-size: 26px; margin: 0; letter-spacing: .2px; }
     .stamp { font-size: 12px; color: var(--muted); }
 
-    details { background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow:hidden; margin: 10px 0; }
-    summary { cursor:pointer; list-style:none; padding: 14px 14px; font-weight: 800; letter-spacing: .3px; }
-    summary::-webkit-details-marker { display:none; }
+    /* Category buttons grid (max 3 per row) */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+    @media (max-width: 720px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 420px) { .grid { grid-template-columns: 1fr; } }
 
-    .items { padding: 6px 14px 12px 14px; }
-    .item { display:flex; justify-content:space-between; gap:14px; padding: 10px 0; border-top: 1px solid #24262a; }
+    .catbtn {
+      background: linear-gradient(180deg, var(--gold), var(--gold2));
+      border: 0;
+      color: #151515;
+      font-weight: 900;
+      letter-spacing: .6px;
+      text-transform: uppercase;
+      padding: 14px 12px;
+      border-radius: 14px;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(0,0,0,.35);
+      min-height: 52px;
+    }
+    .catbtn:active { transform: translateY(1px); }
+
+    .topbar { display:flex; align-items:center; justify-content:space-between; gap: 12px; margin: 14px 0 10px; }
+    .back {
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--txt);
+      padding: 10px 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 800;
+    }
+    .title { font-weight: 900; letter-spacing: .4px; }
+
+    .panel { background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow:hidden; }
+    .items { padding: 8px 14px 14px 14px; }
+    .item { display:flex; justify-content:space-between; gap:14px; padding: 12px 0; border-top: 1px solid #24262a; }
+    .item:first-child { border-top: 0; }
     .left { min-width: 0; }
-    .name { font-weight: 800; }
+    .name { font-weight: 900; }
     .recipe { color: var(--muted); margin-top: 4px; line-height: 1.35; }
-    .price { white-space: nowrap; font-weight: 800; }
+    .price { white-space: nowrap; font-weight: 900; }
 
-    /* Mobile */
     @media (max-width: 520px) {
       .item { flex-direction: column; }
       .price { align-self: flex-start; }
@@ -53,6 +95,90 @@
       return n.toFixed(n % 1 === 0 ? 0 : 2).replace('.', ',') + ' €';
     }
 
+    function renderCategoryView(MENU, catIndex) {
+      const cat = MENU.categories[catIndex];
+      if (!cat) return;
+
+      root.innerHTML = '';
+
+      const top = document.createElement('div');
+      top.className = 'topbar';
+
+      const back = document.createElement('button');
+      back.className = 'back';
+      back.textContent = '← Categorie';
+      back.addEventListener('click', () => {
+        history.pushState({ view: 'grid' }, '', '#');
+        renderGridView(MENU);
+      });
+
+      const title = document.createElement('div');
+      title.className = 'title';
+      title.textContent = cat.name;
+
+      top.appendChild(back);
+      top.appendChild(title);
+
+      const panel = document.createElement('div');
+      panel.className = 'panel';
+
+      const items = document.createElement('div');
+      items.className = 'items';
+
+      for (const it of cat.items) {
+        const row = document.createElement('div');
+        row.className = 'item';
+
+        const left = document.createElement('div');
+        left.className = 'left';
+
+        const name = document.createElement('div');
+        name.className = 'name';
+        name.textContent = it.name;
+        left.appendChild(name);
+
+        if (it.ingredients) {
+          const r = document.createElement('div');
+          r.className = 'recipe';
+          r.textContent = it.ingredients;
+          left.appendChild(r);
+        }
+
+        const price = document.createElement('div');
+        price.className = 'price';
+        price.textContent = euro(it.price);
+
+        row.appendChild(left);
+        row.appendChild(price);
+        items.appendChild(row);
+      }
+
+      panel.appendChild(items);
+
+      root.appendChild(top);
+      root.appendChild(panel);
+    }
+
+    function renderGridView(MENU) {
+      root.innerHTML = '';
+
+      const grid = document.createElement('div');
+      grid.className = 'grid';
+
+      MENU.categories.forEach((cat, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'catbtn';
+        btn.textContent = cat.name;
+        btn.addEventListener('click', () => {
+          history.pushState({ view: 'cat', idx }, '', '#cat=' + idx);
+          renderCategoryView(MENU, idx);
+        });
+        grid.appendChild(btn);
+      });
+
+      root.appendChild(grid);
+    }
+
     function render(MENU) {
       stamp.textContent = MENU?.generated_at ? ('Aggiornato: ' + MENU.generated_at.replace('T',' ')) : '';
 
@@ -61,51 +187,16 @@
         return;
       }
 
-      root.innerHTML = '';
-
-      for (const cat of MENU.categories) {
-        const d = document.createElement('details');
-        d.open = false;
-
-        const s = document.createElement('summary');
-        s.textContent = cat.name;
-        d.appendChild(s);
-
-        const items = document.createElement('div');
-        items.className = 'items';
-
-        for (const it of cat.items) {
-          const row = document.createElement('div');
-          row.className = 'item';
-
-          const left = document.createElement('div');
-          left.className = 'left';
-
-          const name = document.createElement('div');
-          name.className = 'name';
-          name.textContent = it.name;
-
-          left.appendChild(name);
-
-          if (it.ingredients) {
-            const r = document.createElement('div');
-            r.className = 'recipe';
-            r.textContent = it.ingredients;
-            left.appendChild(r);
-          }
-
-          const price = document.createElement('div');
-          price.className = 'price';
-          price.textContent = euro(it.price);
-
-          row.appendChild(left);
-          row.appendChild(price);
-          items.appendChild(row);
+      // If URL has #cat=n open that category, else show grid
+      const m = String(location.hash || '').match(/cat=(\d+)/);
+      if (m) {
+        const idx = Number(m[1]);
+        if (!Number.isNaN(idx) && idx >= 0 && idx < MENU.categories.length) {
+          renderCategoryView(MENU, idx);
+          return;
         }
-
-        d.appendChild(items);
-        root.appendChild(d);
       }
+      renderGridView(MENU);
     }
 
     async function loadAndRender() {
