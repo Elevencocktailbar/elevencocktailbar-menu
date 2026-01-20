@@ -5,16 +5,69 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Menu - Eleven Cocktail Bar</title>
   <style>
-    :root { --bg:#0f0f10; --card:#17181a; --line:#2a2c2f; --txt:#f4f5f7; --muted:#b9bcc3; }
+    :root { --bg:#0f0f10; --card:#17181a; --line:#2a2c2f; --txt:#f4f5f7; --muted:#b9bcc3; --btn:#f2b400; --btnTxt:#121212; }
     body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin:0; background:var(--bg); color:var(--txt); }
     .wrap { max-width: 980px; margin: 0 auto; padding: 18px; }
+
     header { display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin-bottom: 14px; }
     h1 { font-size: 26px; margin: 0; letter-spacing: .2px; }
     .stamp { font-size: 12px; color: var(--muted); }
 
-    details { background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow:hidden; margin: 10px 0; }
-    summary { cursor:pointer; list-style:none; padding: 14px 14px; font-weight: 800; letter-spacing: .3px; }
-    summary::-webkit-details-marker { display:none; }
+    /* Griglia categorie (bottoni) */
+    .cats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin: 12px 0 14px 0;
+    }
+    .catBtn{
+      appearance:none;
+      border: 0;
+      border-radius: 14px;
+      padding: 12px 10px;
+      font-weight: 900;
+      letter-spacing: .4px;
+      text-transform: uppercase;
+      cursor: pointer;
+      background: var(--btn);
+      color: var(--btnTxt);
+      box-shadow: 0 0 0 1px rgba(0,0,0,.35) inset;
+    }
+    .catBtn[aria-selected="true"]{
+      outline: 3px solid rgba(242,180,0,.35);
+      filter: brightness(1.02);
+    }
+
+    /* Pannello categoria selezionata */
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+    .panelHead{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding: 14px 14px;
+      border-bottom: 1px solid #24262a;
+      font-weight: 900;
+      letter-spacing: .3px;
+      text-transform: uppercase;
+    }
+    .panelTitle{ font-size: 14px; }
+    .closeBtn{
+      appearance:none;
+      border: 1px solid #2f3237;
+      background: transparent;
+      color: var(--muted);
+      border-radius: 10px;
+      padding: 6px 10px;
+      cursor:pointer;
+      font-weight: 700;
+    }
 
     .items { padding: 6px 14px 12px 14px; }
     .item { display:flex; justify-content:space-between; gap:14px; padding: 10px 0; border-top: 1px solid #24262a; }
@@ -23,8 +76,11 @@
     .recipe { color: var(--muted); margin-top: 4px; line-height: 1.35; }
     .price { white-space: nowrap; font-weight: 800; }
 
-    /* Mobile */
+    @media (max-width: 720px){
+      .cats{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
     @media (max-width: 520px) {
+      .cats{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .item { flex-direction: column; }
       .price { align-self: flex-start; }
     }
@@ -37,14 +93,35 @@
       <div class="stamp" id="stamp"></div>
     </header>
 
-    <div id="root"></div>
+    <div id="cats" class="cats" aria-label="Categorie"></div>
+
+    <div id="panel" class="panel" style="display:none;">
+      <div class="panelHead">
+        <div class="panelTitle" id="panelTitle"></div>
+        <button class="closeBtn" id="closeBtn" type="button">Chiudi</button>
+      </div>
+      <div class="items" id="items"></div>
+    </div>
+
+    <div id="msg" style="color:#b9bcc3; margin-top:10px;"></div>
   </div>
 
   <script>
     const DATA_URL = 'menu_online.json';
+    const POLL_MS = 30000;
 
-    const root = document.getElementById('root');
     const stamp = document.getElementById('stamp');
+    const catsEl = document.getElementById('cats');
+    const panel = document.getElementById('panel');
+    const panelTitle = document.getElementById('panelTitle');
+    const itemsEl = document.getElementById('items');
+    const closeBtn = document.getElementById('closeBtn');
+    const msg = document.getElementById('msg');
+
+    let MENU_CACHE = null;
+    let selectedIndex = -1;
+    let lastGeneratedAt = null;
+    let pollTimer = null;
 
     function euro(v) {
       if (v === null || v === undefined || v === '') return '';
@@ -52,78 +129,169 @@
       if (Number.isNaN(n)) return String(v);
       return n.toFixed(n % 1 === 0 ? 0 : 2).replace('.', ',') + ' €';
     }
+    function normGen(g){ return g ? String(g).replace('T',' ').trim() : null; }
 
-    function render(MENU) {
-      stamp.textContent = MENU?.generated_at ? ('Aggiornato: ' + MENU.generated_at.replace('T',' ')) : '';
+    function clearSelectedButtons(){
+      const btns = catsEl.querySelectorAll('button.catBtn');
+      btns.forEach(b => b.setAttribute('aria-selected','false'));
+    }
 
-      if (!MENU?.categories || !MENU.categories.length) {
-        root.innerHTML = '<p style="color:#b9bcc3">Nessun prodotto online.</p>';
+    function renderCategories(categories){
+      catsEl.innerHTML = '';
+      categories.forEach((cat, idx) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'catBtn';
+        b.textContent = cat.name;
+        b.setAttribute('aria-selected', 'false');
+        b.addEventListener('click', () => selectCategory(idx));
+        catsEl.appendChild(b);
+      });
+    }
+
+    function renderItems(cat){
+      itemsEl.innerHTML = '';
+      for (const it of (cat.items || [])) {
+        const row = document.createElement('div');
+        row.className = 'item';
+
+        const left = document.createElement('div');
+        left.className = 'left';
+
+        const name = document.createElement('div');
+        name.className = 'name';
+        name.textContent = it.name ?? '';
+        left.appendChild(name);
+
+        if (it.ingredients) {
+          const r = document.createElement('div');
+          r.className = 'recipe';
+          r.textContent = it.ingredients;
+          left.appendChild(r);
+        }
+
+        const price = document.createElement('div');
+        price.className = 'price';
+        price.textContent = euro(it.price);
+
+        row.appendChild(left);
+        row.appendChild(price);
+        itemsEl.appendChild(row);
+      }
+    }
+
+    // ✅ una sola categoria aperta: selezionando una, la precedente “si chiude” automaticamente
+    function selectCategory(idx){
+      if (!MENU_CACHE?.categories?.length) return;
+
+      // se clicchi la stessa categoria: la chiudo (toggle)
+      if (selectedIndex === idx && panel.style.display !== 'none'){
+        closePanel();
         return;
       }
 
-      root.innerHTML = '';
+      selectedIndex = idx;
 
-      for (const cat of MENU.categories) {
-        const d = document.createElement('details');
-        d.open = false;
+      clearSelectedButtons();
+      const btn = catsEl.querySelectorAll('button.catBtn')[idx];
+      if (btn) btn.setAttribute('aria-selected', 'true');
 
-        const s = document.createElement('summary');
-        s.textContent = cat.name;
-        d.appendChild(s);
+      const cat = MENU_CACHE.categories[idx];
+      panelTitle.textContent = cat.name;
+      renderItems(cat);
+      panel.style.display = '';
+      msg.textContent = '';
+      // scroll leggero verso i contenuti (utile su mobile)
+      panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 
-        const items = document.createElement('div');
-        items.className = 'items';
+    function closePanel(){
+      selectedIndex = -1;
+      clearSelectedButtons();
+      panel.style.display = 'none';
+    }
 
-        for (const it of cat.items) {
-          const row = document.createElement('div');
-          row.className = 'item';
+    closeBtn.addEventListener('click', closePanel);
 
-          const left = document.createElement('div');
-          left.className = 'left';
+    async function fetchMenu(){
+      const bust = Date.now();
+      const resp = await fetch(`${DATA_URL}?v=${bust}`, {
+        cache: 'no-store',
+        headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' }
+      });
+      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+      return await resp.json();
+    }
 
-          const name = document.createElement('div');
-          name.className = 'name';
-          name.textContent = it.name;
+    function applyMenu(MENU){
+      MENU_CACHE = MENU;
 
-          left.appendChild(name);
+      const gen = normGen(MENU?.generated_at);
+      stamp.textContent = gen ? ('Aggiornato: ' + gen) : '';
+      msg.textContent = '';
 
-          if (it.ingredients) {
-            const r = document.createElement('div');
-            r.className = 'recipe';
-            r.textContent = it.ingredients;
-            left.appendChild(r);
-          }
+      const cats = MENU?.categories || [];
+      if (!cats.length){
+        catsEl.innerHTML = '';
+        closePanel();
+        msg.textContent = 'Nessun prodotto online.';
+        return;
+      }
 
-          const price = document.createElement('div');
-          price.className = 'price';
-          price.textContent = euro(it.price);
+      renderCategories(cats);
 
-          row.appendChild(left);
-          row.appendChild(price);
-          items.appendChild(row);
+      // se prima era selezionata una categoria, prova a mantenerla
+      if (selectedIndex >= 0 && selectedIndex < cats.length){
+        selectCategory(selectedIndex);
+      } else {
+        closePanel(); // nessuna selezione di default (se vuoi aprire la prima, dimmelo)
+      }
+    }
+
+    async function loadAndRender(force=false){
+      try{
+        const MENU = await fetchMenu();
+        const gen = normGen(MENU?.generated_at);
+
+        if (!force && gen && lastGeneratedAt === gen) return;
+        lastGeneratedAt = gen || lastGeneratedAt;
+
+        applyMenu(MENU);
+      }catch(e){
+        if (!MENU_CACHE){
+          msg.textContent = 'Errore nel caricamento del menu. Riprova tra poco.';
         }
-
-        d.appendChild(items);
-        root.appendChild(d);
       }
     }
 
-    async function loadAndRender() {
-      try {
-        const bust = Date.now();
-        const resp = await fetch(`${DATA_URL}?v=${bust}`, {
-          cache: 'no-store',
-          headers: { 'Cache-Control': 'no-cache' },
-        });
-        if (!resp.ok) throw new Error('HTTP ' + resp.status);
-        const MENU = await resp.json();
-        render(MENU);
-      } catch (e) {
-        root.innerHTML = '<p style="color:#b9bcc3">Errore nel caricamento del menu. Riprova tra poco.</p>';
-      }
+    function startPolling(){
+      if (pollTimer) return;
+      pollTimer = setInterval(() => {
+        if (document.visibilityState === 'visible') loadAndRender(false);
+      }, POLL_MS);
+    }
+    function stopPolling(){
+      if (!pollTimer) return;
+      clearInterval(pollTimer);
+      pollTimer = null;
     }
 
-    loadAndRender();
+    // iniziale
+    loadAndRender(true);
+
+    // aggiorna quando l’utente torna alla pagina
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') {
+        loadAndRender(false);
+        startPolling();
+      } else {
+        stopPolling();
+      }
+    });
+    if (document.visibilityState === 'visible') startPolling();
+    window.addEventListener('online', () => loadAndRender(false));
   </script>
 </body>
 </html>
+
+
