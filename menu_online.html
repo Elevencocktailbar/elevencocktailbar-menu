@@ -43,14 +43,8 @@
   <script>
     const DATA_URL = 'menu_online.json';
 
-    // ogni quanto controllare aggiornamenti quando la pagina è visibile
-    const POLL_MS = 15000; // 30s (puoi mettere 15000 o 60000)
-
     const root = document.getElementById('root');
     const stamp = document.getElementById('stamp');
-
-    let lastGeneratedAt = null;   // per evitare re-render se non cambia
-    let pollTimer = null;
 
     function euro(v) {
       if (v === null || v === undefined || v === '') return '';
@@ -59,15 +53,8 @@
       return n.toFixed(n % 1 === 0 ? 0 : 2).replace('.', ',') + ' €';
     }
 
-    function normalizeGeneratedAt(g) {
-      if (!g) return null;
-      // supporta sia "2026-01-20T18:13:16" sia "2026-01-20 18:13:16"
-      return String(g).replace('T', ' ').trim();
-    }
-
     function render(MENU) {
-      const gen = normalizeGeneratedAt(MENU?.generated_at);
-      stamp.textContent = gen ? ('Aggiornato: ' + gen) : '';
+      stamp.textContent = MENU?.generated_at ? ('Aggiornato: ' + MENU.generated_at.replace('T',' ')) : '';
 
       if (!MENU?.categories || !MENU.categories.length) {
         root.innerHTML = '<p style="color:#b9bcc3">Nessun prodotto online.</p>';
@@ -87,7 +74,7 @@
         const items = document.createElement('div');
         items.className = 'items';
 
-        for (const it of (cat.items || [])) {
+        for (const it of cat.items) {
           const row = document.createElement('div');
           row.className = 'item';
 
@@ -96,7 +83,8 @@
 
           const name = document.createElement('div');
           name.className = 'name';
-          name.textContent = it.name ?? '';
+          name.textContent = it.name;
+
           left.appendChild(name);
 
           if (it.ingredients) {
@@ -120,79 +108,22 @@
       }
     }
 
-    async function fetchMenu() {
-      const bust = Date.now();
-      const resp = await fetch(`${DATA_URL}?v=${bust}`, {
-        cache: 'no-store',
-        headers: {
-          'Cache-Control': 'no-cache',
-          'Pragma': 'no-cache'
-        }
-      });
-      if (!resp.ok) throw new Error('HTTP ' + resp.status);
-      return await resp.json();
-    }
-
-    async function loadAndRender(force = false) {
+    async function loadAndRender() {
       try {
-        const MENU = await fetchMenu();
-
-        const gen = normalizeGeneratedAt(MENU?.generated_at);
-
-        // Se non c'è generated_at, renderizza comunque (non possiamo confrontare)
-        if (!force && gen && lastGeneratedAt === gen) {
-          return; // nessuna modifica
-        }
-
-        // Render
+        const bust = Date.now();
+        const resp = await fetch(`${DATA_URL}?v=${bust}`, {
+          cache: 'no-store',
+          headers: { 'Cache-Control': 'no-cache' },
+        });
+        if (!resp.ok) throw new Error('HTTP ' + resp.status);
+        const MENU = await resp.json();
         render(MENU);
-
-        // Memorizza versione
-        lastGeneratedAt = gen || lastGeneratedAt;
-
       } catch (e) {
-        // Non cancelliamo quello che c'è già a schermo (così il cliente continua a vedere il menu)
-        // Mostriamo solo un piccolo messaggio nello "stamp" se non c'è già un aggiornamento.
-        if (!stamp.textContent) {
-          stamp.textContent = 'Aggiornamento in corso...';
-        }
+        root.innerHTML = '<p style="color:#b9bcc3">Errore nel caricamento del menu. Riprova tra poco.</p>';
       }
     }
 
-    function startPolling() {
-      if (pollTimer) return;
-      pollTimer = setInterval(() => {
-        if (document.visibilityState === 'visible') {
-          loadAndRender(false);
-        }
-      }, POLL_MS);
-    }
-
-    function stopPolling() {
-      if (!pollTimer) return;
-      clearInterval(pollTimer);
-      pollTimer = null;
-    }
-
-    // 1) primo caricamento
-    loadAndRender(true);
-
-    // 2) quando l’utente torna sulla pagina, aggiorna subito
-    document.addEventListener('visibilitychange', () => {
-      if (document.visibilityState === 'visible') {
-        loadAndRender(false);
-        startPolling();
-      } else {
-        stopPolling();
-      }
-    });
-
-    // 3) polling attivo fin da subito (se la pagina è visibile)
-    if (document.visibilityState === 'visible') startPolling();
-
-    // 4) quando torna online, aggiorna subito
-    window.addEventListener('online', () => loadAndRender(false));
+    loadAndRender();
   </script>
 </body>
 </html>
-
