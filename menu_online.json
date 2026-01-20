@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-01-20T19:38:04",
+  "generated_at": "2026-01-20T19:56:52",
   "categories": [
     {
       "name": "DRINK DEL MESE",
@@ -647,6 +647,56 @@
       ]
     },
     {
+      "name": "FOOD",
+      "items": [
+        {
+          "name": "TAGLIERE BANCO DA LAVORO",
+          "ingredients": "MORTADELLA, SPIANATA PICCANTE, SALAME NAPOLI, SALAME MILANO, PANCETTA, FORMAGGIO PICCANTE, FUNGHI MISTI",
+          "price": 15.0
+        },
+        {
+          "name": "CROSTONE 4 CILINDRI",
+          "ingredients": "SPICCHIO CREMA DI PISTACCHIO E MORTADELLA, SPICCHIO CREMA OLIVE NERE E SALAME MILANO, SPICCHIO CREMA FUNGHI PORCINI E PANCETTA, SPICCHIO CREMA DI PEPERONI, SPIANATA PICCANTE E SCAMORZA DOLCE",
+          "price": 10.0
+        },
+        {
+          "name": "CROSTONE PEPPA PIG",
+          "ingredients": "CREMA DI PISTACCHIO E MORTADELLA",
+          "price": 8.0
+        },
+        {
+          "name": "TAGLIERE ALTA TENSIONE",
+          "ingredients": "MORTADELLA GRIGLIATA, LIME, CREMA DI PISTACCHIO",
+          "price": 10.0
+        },
+        {
+          "name": "CROSTONE DA CANTIERE",
+          "ingredients": "CREMA DI OLIVE NERE E SALAME MILANO",
+          "price": 8.0
+        },
+        {
+          "name": "CROSTONE CARLINGA DEL PORCINO",
+          "ingredients": "CREMA DI FUNGHI PORCINI E PANCETTA ARROTOLATA",
+          "price": 8.0
+        },
+        {
+          "name": "CROSTONE FORGIA ARDENTE",
+          "ingredients": "CREMA DI PEPERONI, SPIANATA PICCANTE E SCAMORZA DOLCE",
+          "price": 8.0
+        },
+        {
+          "name": "CROSTONE LINEA DI FUSIONE",
+          "ingredients": "RUCOLA, SPECK, POMODORINO GIALLO E ROSSO, SCAMORZA",
+          "price": 8.0
+        },
+        {
+          "name": "BRUSCHETTONE FUSIONE SOLARE",
+          "ingredients": "BRUSCHETTONE CON POMODORINI GIALLI E ROSSI",
+          "price": 6.0
+        }
+      ]
+    },
+    {
       "name": "GIN",
       "items": [
         {
@@ -1153,56 +1203,6 @@
           "name": "VIRGIN MARGARITA",
           "ingredients": "SUCCO ARANCIA, SUCCO DI LIMONE, SUCCO DI LIME, SCIROPPO DI AGAVE",
           "price": 7.0
-        }
-      ]
-    },
-    {
-      "name": "FOOD",
-      "items": [
-        {
-          "name": "TAGLIERE BANCO DA LAVORO",
-          "ingredients": "MORTADELLA, SPIANATA PICCANTE, SALAME NAPOLI, SALAME MILANO, PANCETTA, FORMAGGIO PICCANTE, FUNGHI MISTI",
-          "price": 15.0
-        },
-        {
-          "name": "CROSTONE 4 CILINDRI",
-          "ingredients": "SPICCHIO CREMA DI PISTACCHIO E MORTADELLA, SPICCHIO CREMA OLIVE NERE E SALAME MILANO, SPICCHIO CREMA FUNGHI PORCINI E PANCETTA, SPICCHIO CREMA DI PEPERONI, SPIANATA PICCANTE E SCAMORZA DOLCE",
-          "price": 10.0
-        },
-        {
-          "name": "CROSTONE PEPPA PIG",
-          "ingredients": "CREMA DI PISTACCHIO E MORTADELLA",
-          "price": 8.0
-        },
-        {
-          "name": "TAGLIERE ALTA TENSIONE",
-          "ingredients": "MORTADELLA GRIGLIATA, LIME, CREMA DI PISTACCHIO",
-          "price": 10.0
-        },
-        {
-          "name": "CROSTONE DA CANTIERE",
-          "ingredients": "CREMA DI OLIVE NERE E SALAME MILANO",
-          "price": 8.0
-        },
-        {
-          "name": "CROSTONE CARLINGA DEL PORCINO",
-          "ingredients": "CREMA DI FUNGHI PORCINI E PANCETTA ARROTOLATA",
-          "price": 8.0
-        },
-        {
-          "name": "CROSTONE FORGIA ARDENTE",
-          "ingredients": "CREMA DI PEPERONI, SPIANATA PICCANTE E SCAMORZA DOLCE",
-          "price": 8.0
-        },
-        {
-          "name": "CROSTONE LINEA DI FUSIONE",
-          "ingredients": "RUCOLA, SPECK, POMODORINO GIALLO E ROSSO, SCAMORZA",
-          "price": 8.0
-        },
-        {
-          "name": "BRUSCHETTONE FUSIONE SOLARE",
-          "ingredients": "BRUSCHETTONE CON POMODORINI GIALLI E ROSSI",
-          "price": 6.0
         }
       ]
     }
