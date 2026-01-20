@@ -1,14 +1,9 @@
 {
-  "generated_at": "2026-01-20T19:00:46",
+  "generated_at": "2026-01-20T19:02:53",
   "categories": [
     {
       "name": "DRINK DEL MESE",
       "items": [
-        {
-          "name": "LYCHEE SUMMER",
-          "ingredients": "VODKA, SUCCO DI LIMONE, PASSOA, LYCHEE, FOAMER, LEMONSODA",
-          "price": 12.0
-        },
         {
           "name": "KIWI BLOOM",
           "ingredients": "GIN, FIORI DI SAMBUCO, SUCCO DI LIME, KIWI, SCIROPPO DI ZUCCHERO",
