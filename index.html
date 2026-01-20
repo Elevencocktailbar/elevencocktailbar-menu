@@ -22,6 +22,22 @@
       color:var(--txt);
     }
     .wrap { max-width: 980px; margin: 0 auto; padding: 18px; }
+
+    /* Sticky top area: title + categories stay fixed while scrolling items */
+    .stickyTop {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--bg);
+      padding-top: 18px;
+      padding-bottom: 12px;
+      /* Extend background full width of the padded container */
+      margin: -18px -18px 0;
+      padding-left: 18px;
+      padding-right: 18px;
+      box-shadow: 0 10px 20px rgba(0,0,0,.25);
+    }
+
     header { display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin-bottom: 14px; }
     h1 { font-size: 26px; margin: 0; letter-spacing: .2px; }
     .stamp { font-size: 12px; color: var(--muted); }
@@ -67,9 +83,16 @@
       .cat-btn { flex-basis: calc((100% - 14px) / 2); max-width: calc((100% - 14px) / 2); }
     }
     .cat-btn:active { transform: translateY(1px); }
+    .cat-btn.active {
+      /* subtle highlight for the selected category */
+      box-shadow: var(--btnShadow), 0 0 0 3px rgba(246,191,26,.35);
+    }
+    .cat-btn.active {
+      box-shadow: var(--btnShadow), 0 0 0 3px rgba(246,191,26,.35) inset;
+    }
 
     /* Items list */
-    .backbar { display:flex; align-items:center; gap:10px; margin-top: 8px; }
+    .backbar { display:flex; align-items:center; gap:10px; margin-top: 6px; }
     .back-btn {
       border: 1px solid var(--line);
       background: transparent;
@@ -96,12 +119,16 @@
 </head>
 <body>
   <div class="wrap">
-    <header>
-      <h1>Menu</h1>
-      <div class="stamp" id="stamp"></div>
-    </header>
+    <div class="stickyTop">
+      <header>
+        <h1>Menu</h1>
+        <div class="stamp" id="stamp"></div>
+      </header>
 
-    <div id="viewCategories"></div>
+      <div id="viewCategories"></div>
+      <div id="subbar" class="hidden"></div>
+    </div>
+
     <div id="viewItems" class="hidden"></div>
   </div>
 
@@ -110,7 +137,11 @@
 
     const viewCategories = document.getElementById('viewCategories');
     const viewItems = document.getElementById('viewItems');
+    const subbar = document.getElementById('subbar');
     const stamp = document.getElementById('stamp');
+
+    let CURRENT_MENU = null;
+    let selectedIdx = null;
 
     function euro(v) {
       if (v === null || v === undefined || v === '') return '';
@@ -119,62 +150,53 @@
       return n.toFixed(n % 1 === 0 ? 0 : 2).replace('.', ',') + ' €';
     }
 
-    function renderCategories(MENU) {
-      stamp.textContent = MENU?.generated_at ? ('Aggiornato: ' + MENU.generated_at.replace('T',' ')) : '';
-
-      if (!MENU?.categories || !MENU.categories.length) {
-        viewCategories.innerHTML = '<p style="color:#b9bcc3">Nessun prodotto online.</p>';
-        viewItems.classList.add('hidden');
-        viewCategories.classList.remove('hidden');
-        return;
-      }
-
-      viewCategories.innerHTML = '';
-
-      const grid = document.createElement('div');
-      grid.className = 'cat-grid';
-
-      MENU.categories.forEach((cat, idx) => {
-        const b = document.createElement('button');
-        b.className = 'cat-btn';
-        b.type = 'button';
-        b.textContent = cat.name;
-        b.addEventListener('click', () => showCategory(MENU, idx));
-        grid.appendChild(b);
+    function updateActiveButtons() {
+      const buttons = viewCategories.querySelectorAll('.cat-btn');
+      buttons.forEach((b, i) => {
+        if (selectedIdx === i) b.classList.add('active');
+        else b.classList.remove('active');
       });
-
-      viewCategories.appendChild(grid);
-      viewItems.classList.add('hidden');
-      viewCategories.classList.remove('hidden');
     }
 
-    function showCategory(MENU, idx) {
+    function clearSelection() {
+      selectedIdx = null;
+      updateActiveButtons();
+      subbar.classList.add('hidden');
+      subbar.innerHTML = '';
+      viewItems.classList.add('hidden');
+      viewItems.innerHTML = '';
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+
+    function renderSubbar(MENU, idx) {
       const cat = MENU.categories[idx];
       if (!cat) return;
 
-      viewItems.innerHTML = '';
-
-      const backbar = document.createElement('div');
-      backbar.className = 'backbar';
+      subbar.innerHTML = '';
+      const bar = document.createElement('div');
+      bar.className = 'backbar';
 
       const back = document.createElement('button');
       back.className = 'back-btn';
       back.type = 'button';
       back.textContent = '← Categorie';
-      back.addEventListener('click', () => {
-        viewItems.classList.add('hidden');
-        viewCategories.classList.remove('hidden');
-        // keep scroll position nice on mobile
-        window.scrollTo({ top: 0, behavior: 'instant' });
-      });
+      back.addEventListener('click', clearSelection);
 
       const title = document.createElement('div');
       title.className = 'cat-title';
       title.textContent = cat.name;
 
-      backbar.appendChild(back);
-      backbar.appendChild(title);
-      viewItems.appendChild(backbar);
+      bar.appendChild(back);
+      bar.appendChild(title);
+      subbar.appendChild(bar);
+      subbar.classList.remove('hidden');
+    }
+
+    function renderItems(MENU, idx) {
+      const cat = MENU.categories[idx];
+      if (!cat) return;
+
+      viewItems.innerHTML = '';
 
       const card = document.createElement('div');
       card.className = 'items-card';
@@ -208,8 +230,51 @@
       });
 
       viewItems.appendChild(card);
-      viewCategories.classList.add('hidden');
       viewItems.classList.remove('hidden');
+    }
+
+    function renderCategories(MENU) {
+      CURRENT_MENU = MENU;
+      stamp.textContent = MENU?.generated_at ? ('Aggiornato: ' + MENU.generated_at.replace('T',' ')) : '';
+
+      if (!MENU?.categories || !MENU.categories.length) {
+        viewCategories.innerHTML = '<p style="color:#b9bcc3">Nessun prodotto online.</p>';
+        clearSelection();
+        return;
+      }
+
+      viewCategories.innerHTML = '';
+
+      const grid = document.createElement('div');
+      grid.className = 'cat-grid';
+
+      MENU.categories.forEach((cat, idx) => {
+        const b = document.createElement('button');
+        b.className = 'cat-btn';
+        b.type = 'button';
+        b.textContent = cat.name;
+        b.addEventListener('click', () => showCategory(MENU, idx));
+        grid.appendChild(b);
+      });
+
+      viewCategories.appendChild(grid);
+      updateActiveButtons();
+
+      // If a category was already selected (e.g. back/forward), re-render items
+      if (selectedIdx !== null && MENU.categories[selectedIdx]) {
+        renderSubbar(MENU, selectedIdx);
+        renderItems(MENU, selectedIdx);
+      } else {
+        subbar.classList.add('hidden');
+        viewItems.classList.add('hidden');
+      }
+    }
+
+    function showCategory(MENU, idx) {
+      selectedIdx = idx;
+      updateActiveButtons();
+      renderSubbar(MENU, idx);
+      renderItems(MENU, idx);
       window.scrollTo({ top: 0, behavior: 'instant' });
     }
 
