@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-01-20T20:47:03",
+  "generated_at": "2026-01-20T21:47:05",
   "categories": [
     {
       "name": "FOOD",
@@ -55,24 +55,19 @@
       "name": "DRINK DEL MESE",
       "items": [
         {
-          "name": "LYCHEE SUMMER",
-          "ingredients": "VODKA, SUCCO DI LIMONE, PASSOA, LYCHEE, FOAMER, LEMONSODA",
-          "price": 200.0
+          "name": "GOLDEN HOUR",
+          "ingredients": "VODKA, SUCCO DI LIMONE, SUCCO DI PESCA, MIELE, FOAMER",
+          "price": 12.0
         },
         {
-          "name": "LEMONBERRY",
-          "ingredients": "GIN, LIQUORE AL LAMPONE, SUCCO DI LIMONE, SCIROPPO DI ZUCCHERO, FOAMER, GINGER ALE",
-          "price": 200.0
+          "name": "LYCHEE SUMMER",
+          "ingredients": "VODKA, SUCCO DI LIMONE, PASSOA, LYCHEE, FOAMER, LEMONSODA",
+          "price": 12.0
         },
         {
           "name": "KIWI BLOOM",
           "ingredients": "GIN, FIORI DI SAMBUCO, SUCCO DI LIME, KIWI, SCIROPPO DI ZUCCHERO",
-          "price": 200.0
-        },
-        {
-          "name": "MELA",
-          "ingredients": "WHISKEY JAMESON, SUCCO DI LIME, SCIROPPO DI ZUCCHERO, POLPA DI MELA",
-          "price": 200.0
+          "price": 12.0
         }
       ]
     },
