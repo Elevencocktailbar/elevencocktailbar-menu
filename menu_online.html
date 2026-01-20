@@ -4,288 +4,126 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Menu - Eleven Cocktail Bar</title>
-
   <style>
-    :root{
-      --bg:#0f0f10;
-      --card:#17181a;
-      --line:#2a2c2f;
-      --txt:#f4f5f7;
-      --muted:#b9bcc3;
-      --btn:#f2b400;
-      --btnTxt:#121212;
-    }
+    :root { --bg:#0f0f10; --card:#17181a; --line:#2a2c2f; --txt:#f4f5f7; --muted:#b9bcc3; }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin:0; background:var(--bg); color:var(--txt); }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 18px; }
+    header { display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin-bottom: 14px; }
+    h1 { font-size: 26px; margin: 0; letter-spacing: .2px; }
+    .stamp { font-size: 12px; color: var(--muted); }
 
-    body{
-      margin:0;
-      background:var(--bg);
-      color:var(--txt);
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    }
+    details { background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow:hidden; margin: 10px 0; }
+    summary { cursor:pointer; list-style:none; padding: 14px 14px; font-weight: 800; letter-spacing: .3px; }
+    summary::-webkit-details-marker { display:none; }
 
-    .wrap{
-      max-width:980px;
-      margin:0 auto;
-      padding:18px;
-    }
+    .items { padding: 6px 14px 12px 14px; }
+    .item { display:flex; justify-content:space-between; gap:14px; padding: 10px 0; border-top: 1px solid #24262a; }
+    .left { min-width: 0; }
+    .name { font-weight: 800; }
+    .recipe { color: var(--muted); margin-top: 4px; line-height: 1.35; }
+    .price { white-space: nowrap; font-weight: 800; }
 
-    header{
-      display:flex;
-      justify-content:space-between;
-      align-items:baseline;
-      gap:12px;
-      margin-bottom:14px;
-    }
-
-    h1{
-      margin:0;
-      font-size:26px;
-    }
-
-    .stamp{
-      font-size:12px;
-      color:var(--muted);
-    }
-
-    /* ===== CATEGORIE (STILE SCREEN) ===== */
-    .cats{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-bottom:14px;
-    }
-
-    .catBtn{
-      appearance:none;
-      border:0;
-      border-radius:14px;
-      padding:12px 14px;
-      font-weight:900;
-      letter-spacing:.4px;
-      text-transform:uppercase;
-      cursor:pointer;
-      background:var(--btn);
-      color:var(--btnTxt);
-      text-align:center;
-      line-height:1.1;
-
-      /* max 3 per riga, larghezza adattiva */
-      flex:0 1 auto;
-      max-width:calc((100% - 20px) / 3);
-    }
-
-    .catBtn[aria-selected="true"]{
-      outline:3px solid rgba(242,180,0,.35);
-      filter:brightness(1.05);
-    }
-
-    /* tablet */
-    @media (max-width:720px){
-      .catBtn{
-        max-width:calc((100% - 10px) / 2);
-      }
-    }
-
-    /* mobile */
-    @media (max-width:520px){
-      .catBtn{
-        max-width:calc((100% - 10px) / 2);
-        padding:14px;
-      }
-    }
-
-    /* ===== PANNELLO MENU ===== */
-    .panel{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:14px;
-      overflow:hidden;
-      display:none;
-    }
-
-    .panelHead{
-      padding:14px;
-      border-bottom:1px solid #24262a;
-      font-weight:900;
-      letter-spacing:.3px;
-      text-transform:uppercase;
-    }
-
-    .items{
-      padding:6px 14px 12px;
-    }
-
-    .item{
-      display:flex;
-      justify-content:space-between;
-      gap:14px;
-      padding:10px 0;
-      border-top:1px solid #24262a;
-    }
-
-    .name{
-      font-weight:800;
-    }
-
-    .recipe{
-      margin-top:4px;
-      color:var(--muted);
-      line-height:1.35;
-    }
-
-    .price{
-      white-space:nowrap;
-      font-weight:800;
-    }
-
-    @media (max-width:520px){
-      .item{
-        flex-direction:column;
-      }
-      .price{
-        align-self:flex-start;
-      }
+    /* Mobile */
+    @media (max-width: 520px) {
+      .item { flex-direction: column; }
+      .price { align-self: flex-start; }
     }
   </style>
 </head>
-
 <body>
-<div class="wrap">
-  <header>
-    <h1>Menu</h1>
-    <div class="stamp" id="stamp"></div>
-  </header>
+  <div class="wrap">
+    <header>
+      <h1>Menu</h1>
+      <div class="stamp" id="stamp"></div>
+    </header>
 
-  <div id="cats" class="cats"></div>
-
-  <div id="panel" class="panel">
-    <div class="panelHead" id="panelTitle"></div>
-    <div class="items" id="items"></div>
+    <div id="root"></div>
   </div>
-</div>
 
-<script>
-  const DATA_URL = 'menu_online.json';
-  const POLL_MS = 30000;
+  <script>
+    const DATA_URL = 'menu_online.json';
 
-  const catsEl = document.getElementById('cats');
-  const panel = document.getElementById('panel');
-  const panelTitle = document.getElementById('panelTitle');
-  const itemsEl = document.getElementById('items');
-  const stamp = document.getElementById('stamp');
+    const root = document.getElementById('root');
+    const stamp = document.getElementById('stamp');
 
-  let MENU_CACHE = null;
-  let selectedIndex = -1;
-  let lastGeneratedAt = null;
-  let pollTimer = null;
-
-  function euro(v){
-    if(v === null || v === undefined || v === '') return '';
-    const n = Number(v);
-    if(Number.isNaN(n)) return v;
-    return n.toFixed(n % 1 === 0 ? 0 : 2).replace('.', ',') + ' €';
-  }
-
-  function normGen(g){
-    return g ? String(g).replace('T',' ') : null;
-  }
-
-  function clearSelection(){
-    catsEl.querySelectorAll('.catBtn')
-      .forEach(b => b.setAttribute('aria-selected','false'));
-  }
-
-  function renderCategories(categories){
-    catsEl.innerHTML = '';
-    categories.forEach((cat, idx) => {
-      const b = document.createElement('button');
-      b.className = 'catBtn';
-      b.textContent = cat.name;
-      b.setAttribute('aria-selected','false');
-      b.onclick = () => selectCategory(idx);
-      catsEl.appendChild(b);
-    });
-  }
-
-  function renderItems(cat){
-    itemsEl.innerHTML = '';
-    cat.items.forEach(it => {
-      const row = document.createElement('div');
-      row.className = 'item';
-
-      const left = document.createElement('div');
-      left.innerHTML = `
-        <div class="name">${it.name}</div>
-        ${it.ingredients ? `<div class="recipe">${it.ingredients}</div>` : ''}
-      `;
-
-      const price = document.createElement('div');
-      price.className = 'price';
-      price.textContent = euro(it.price);
-
-      row.appendChild(left);
-      row.appendChild(price);
-      itemsEl.appendChild(row);
-    });
-  }
-
-  function selectCategory(idx){
-    if(selectedIndex === idx){
-      panel.style.display = 'none';
-      clearSelection();
-      selectedIndex = -1;
-      return;
+    function euro(v) {
+      if (v === null || v === undefined || v === '') return '';
+      const n = Number(v);
+      if (Number.isNaN(n)) return String(v);
+      return n.toFixed(n % 1 === 0 ? 0 : 2).replace('.', ',') + ' €';
     }
 
-    selectedIndex = idx;
-    clearSelection();
-    catsEl.children[idx].setAttribute('aria-selected','true');
+    function render(MENU) {
+      stamp.textContent = MENU?.generated_at ? ('Aggiornato: ' + MENU.generated_at.replace('T',' ')) : '';
 
-    const cat = MENU_CACHE.categories[idx];
-    panelTitle.textContent = cat.name;
-    renderItems(cat);
-    panel.style.display = 'block';
-    panel.scrollIntoView({ behavior:'smooth', block:'start' });
-  }
+      if (!MENU?.categories || !MENU.categories.length) {
+        root.innerHTML = '<p style="color:#b9bcc3">Nessun prodotto online.</p>';
+        return;
+      }
 
-  async function fetchMenu(){
-    const resp = await fetch(`${DATA_URL}?v=${Date.now()}`, {
-      cache:'no-store',
-      headers:{ 'Cache-Control':'no-cache', 'Pragma':'no-cache' }
-    });
-    if(!resp.ok) throw new Error();
-    return await resp.json();
-  }
+      root.innerHTML = '';
 
-  async function loadMenu(force=false){
-    try{
-      const MENU = await fetchMenu();
-      const gen = normGen(MENU.generated_at);
-      if(!force && gen && gen === lastGeneratedAt) return;
+      for (const cat of MENU.categories) {
+        const d = document.createElement('details');
+        d.open = false;
 
-      lastGeneratedAt = gen;
-      MENU_CACHE = MENU;
-      stamp.textContent = gen ? `Aggiornato: ${gen}` : '';
+        const s = document.createElement('summary');
+        s.textContent = cat.name;
+        d.appendChild(s);
 
-      renderCategories(MENU.categories);
-      panel.style.display = 'none';
-      selectedIndex = -1;
-    }catch{}
-  }
+        const items = document.createElement('div');
+        items.className = 'items';
 
-  function startPolling(){
-    if(pollTimer) return;
-    pollTimer = setInterval(() => {
-      if(document.visibilityState === 'visible') loadMenu(false);
-    }, POLL_MS);
-  }
+        for (const it of cat.items) {
+          const row = document.createElement('div');
+          row.className = 'item';
 
-  loadMenu(true);
-  startPolling();
+          const left = document.createElement('div');
+          left.className = 'left';
 
-  document.addEventListener('visibilitychange', () => {
-    if(document.visibilityState === 'visible') loadMenu(false);
-  });
-</script>
+          const name = document.createElement('div');
+          name.className = 'name';
+          name.textContent = it.name;
+
+          left.appendChild(name);
+
+          if (it.ingredients) {
+            const r = document.createElement('div');
+            r.className = 'recipe';
+            r.textContent = it.ingredients;
+            left.appendChild(r);
+          }
+
+          const price = document.createElement('div');
+          price.className = 'price';
+          price.textContent = euro(it.price);
+
+          row.appendChild(left);
+          row.appendChild(price);
+          items.appendChild(row);
+        }
+
+        d.appendChild(items);
+        root.appendChild(d);
+      }
+    }
+
+    async function loadAndRender() {
+      try {
+        const bust = Date.now();
+        const resp = await fetch(`${DATA_URL}?v=${bust}`, {
+          cache: 'no-store',
+          headers: { 'Cache-Control': 'no-cache' },
+        });
+        if (!resp.ok) throw new Error('HTTP ' + resp.status);
+        const MENU = await resp.json();
+        render(MENU);
+      } catch (e) {
+        root.innerHTML = '<p style="color:#b9bcc3">Errore nel caricamento del menu. Riprova tra poco.</p>';
+      }
+    }
+
+    loadAndRender();
+  </script>
 </body>
 </html>
