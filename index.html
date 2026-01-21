@@ -4,244 +4,190 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Menu - Eleven Cocktail Bar</title>
+
   <style>
-    :root {
+    :root{
       --bg:#0f0f10;
       --card:#17181a;
       --line:#2a2c2f;
       --txt:#f4f5f7;
       --muted:#b9bcc3;
-      --btn:#f6bf1a;       /* giallo stile screenshot */
+      --btn:#f6bf1a;
       --btnText:#111;
-      --btnShadow: 0 8px 18px rgba(0,0,0,.25);
+      --btnShadow:0 8px 18px rgba(0,0,0,.25);
     }
-    body {
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+    body{
       margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       background:var(--bg);
       color:var(--txt);
-      padding-bottom: env(safe-area-inset-bottom);
-    }
-    .wrap { max-width: 980px; margin: 0 auto; padding: 18px; }
-
-    /* Sticky top area: title + categories stay fixed while scrolling items */
-    .stickyTop {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: var(--bg);
-      padding-top: 18px;
-      padding-bottom: 12px;
-      /* Extend background full width of the padded container */
-      margin: -18px -18px 0;
-      padding-left: 18px;
-      padding-right: 18px;
-      box-shadow: 0 10px 20px rgba(0,0,0,.25);
+      padding-bottom:env(safe-area-inset-bottom);
     }
 
-    header { display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin-bottom: 14px; }
-    h1 { font-size: 26px; margin: 0; letter-spacing: .2px; }
-    .stamp { font-size: 12px; color: var(--muted); }
-
-    /* Views */
-    .hidden { display:none !important; }
-
-    /* Category buttons layout: like the original site
-       - single buttons (no accordion)
-       - max 3 per row (DESKTOP + MOBILE)
-       - responsive sizes on small screens */
-    .cat-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 14px;
-      margin-top: 10px;
+    .wrap{
+      max-width:980px;
+      margin:0 auto;
+      padding:16px;
     }
 
-    .cat-btn {
-      appearance: none;
-      border: 0;
-      border-radius: 18px;
-      padding: 14px 18px;
-      background: var(--btn);
-      color: var(--btnText);
-      font-weight: 900;
-      letter-spacing: .3px;
-      text-transform: uppercase;
-      box-shadow: var(--btnShadow);
-      cursor: pointer;
-      line-height: 1.15;
-      font-size: clamp(13px, 2.2vw, 18px);
-
-      /* Key: at most 3 per row */
-      flex: 1 1 calc((100% - 28px) / 3);
-      max-width: calc((100% - 28px) / 3);
-      min-width: 110px;
-
-      /* allow nicer wrapping on small screens (overridden below) */
-      white-space: nowrap;
+    /* ===== STICKY TOP ===== */
+    .stickyTop{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:var(--bg);
+      margin:-16px -16px 0;
+      padding:12px 16px 10px;
+      box-shadow:0 8px 18px rgba(0,0,0,.35);
+      max-height:52dvh;
+      overflow:auto;
+      -webkit-overflow-scrolling:touch;
     }
 
-    .cat-btn:active { transform: translateY(1px); }
-
-    /* only one active rule (dedup) */
-    .cat-btn.active {
-      box-shadow: var(--btnShadow), 0 0 0 3px rgba(246,191,26,.35) inset;
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:baseline;
+      gap:8px;
+      margin-bottom:8px;
     }
 
-    /* Items list */
-    .backbar { display:flex; align-items:center; gap:10px; margin-top: 6px; }
-    .back-btn {
-      border: 1px solid var(--line);
-      background: transparent;
-      color: var(--txt);
-      padding: 8px 10px;
-      border-radius: 12px;
-      cursor: pointer;
-    }
-    .cat-title { font-weight: 900; letter-spacing: .2px; }
-
-    .items-card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow:hidden; margin-top: 12px; }
-    .item { display:flex; justify-content:space-between; gap:14px; padding: 12px 14px; border-top: 1px solid #24262a; }
-    .item:first-child { border-top: 0; }
-    .left { min-width: 0; }
-    .name { font-weight: 900; }
-    .recipe { color: var(--muted); margin-top: 4px; line-height: 1.35; }
-    .price { white-space: nowrap; font-weight: 900; }
-
-    @media (max-width: 520px) {
-      .item { flex-direction: column; }
-      .price { align-self: flex-start; }
+    h1{
+      margin:0;
+      font-size:22px;
+      letter-spacing:.2px;
     }
 
-    /* ===== MOBILE FIT (mantiene layout, riduce spazi e rende leggibile) ===== */
-    @media (max-width: 520px){
-      /* meno bordi = meno “spazio bianco” percepito */
-      .wrap{ padding: 10px; }
-
-      .stickyTop{
-        padding-top: 10px;
-        padding-bottom: 8px;
-
-        /* riallinea l'estensione full-width della sticky area */
-        margin: -10px -10px 0;
-        padding-left: 10px;
-        padding-right: 10px;
-      }
-
-      header{ margin-bottom: 8px; gap: 8px; }
-      h1{ font-size: 22px; }
-      .stamp{ font-size: 11px; }
-
-      .cat-grid{
-        gap: 10px;
-        margin-top: 8px;
-      }
-
-      /* RESTA 3 per riga, ma più compatto e leggibile */
-      .cat-btn{
-        flex: 1 1 calc((100% - 20px) / 3);
-        max-width: calc((100% - 20px) / 3);
-        min-width: 0;                 /* importantissimo: evita overflow */
-
-        padding: 10px 8px;
-        border-radius: 16px;
-
-        font-size: 12px;              /* leggibile ma non enorme */
-        line-height: 1.05;
-
-        /* permette 2 righe */
-        white-space: normal;
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-
-        min-height: 48px;
-      }
-
-      /* prodotti più compatti, così “entrano” meglio */
-      .items-card{ margin-top: 10px; }
-      .item{ padding: 12px; }
-      .name{ font-size: 16px; }
-      .recipe{ font-size: 14px; }
-      .price{ font-size: 16px; }
+    .stamp{
+      font-size:11px;
+      color:var(--muted);
     }
 
-    /* telefoni davvero piccoli: riduci ancora un filo */
-    @media (max-width: 380px){
-      .cat-btn{ font-size: 11.5px; min-height: 46px; }
-      h1{ font-size: 21px; }
+    .hidden{display:none!important;}
+
+    /* ===== CATEGORIE ===== */
+    .cat-grid{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:10px;
     }
 
-    /* evita che lo sticky copra la pagina quando scrolli/torni su */
-    @media (max-width: 520px){
-      :root{ scroll-padding-top: 140px; }
+    .cat-btn{
+      flex:1 1 calc((100% - 20px)/3);
+      max-width:calc((100% - 20px)/3);
+      min-width:0;
+
+      border:0;
+      border-radius:14px;
+      padding:8px 6px;
+
+      background:var(--btn);
+      color:var(--btnText);
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.3px;
+      box-shadow:var(--btnShadow);
+      cursor:pointer;
+
+      font-size:11px;
+      line-height:1.05;
+      text-align:center;
+
+      white-space:normal;
+      display:-webkit-box;
+      -webkit-line-clamp:2;
+      -webkit-box-orient:vertical;
+      overflow:hidden;
+      min-height:42px;
     }
 
-    /* ===== FINAL MOBILE FIX: più spazio ai prodotti (sticky più basso) ===== */
-    @media (max-width: 520px){
-      .wrap{ padding: 8px; }
-
-      .stickyTop{
-        padding-top: 8px;
-        padding-bottom: 6px;
-        margin: -8px -8px 0;
-        padding-left: 8px;
-        padding-right: 8px;
-
-        /* CHIAVE: non far “mangiare” tutto lo schermo allo sticky */
-        max-height: 52dvh;
-        overflow: auto;
-        -webkit-overflow-scrolling: touch;
-      }
-
-      header{ margin-bottom: 6px; gap: 6px; }
-      h1{ font-size: 20px; }
-      .stamp{ font-size: 10px; }
-
-      .cat-grid{ gap: 8px; margin-top: 6px; }
-
-      .cat-btn{
-        flex: 1 1 calc((100% - 16px) / 3);
-        max-width: calc((100% - 16px) / 3);
-        min-width: 0;
-
-        padding: 8px 6px;
-        border-radius: 14px;
-        font-size: 11px;
-        line-height: 1.05;
-
-        white-space: normal;
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-
-        min-height: 42px;
-      }
-
-      .back-btn{ padding: 7px 9px; border-radius: 11px; }
-      .cat-title{ font-size: 16px; }
-
-      .items-card{ margin-top: 8px; border-radius: 12px; }
-      .item{ padding: 10px 12px; }
-      .name{ font-size: 15px; }
-      .recipe{ font-size: 13px; line-height: 1.3; }
-      .price{ font-size: 15px; }
-
-      :root{ scroll-padding-top: 120px; }
+    .cat-btn.active{
+      box-shadow:var(--btnShadow),0 0 0 3px rgba(246,191,26,.35) inset;
     }
 
-    @media (max-width: 380px){
-      .stickyTop{ max-height: 48dvh; }
-      .cat-btn{ font-size: 10.5px; min-height: 40px; }
-      h1{ font-size: 19px; }
-      :root{ scroll-padding-top: 115px; }
+    /* ===== SUBBAR ===== */
+    .backbar{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-top:6px;
     }
+
+    .back-btn{
+      border:1px solid var(--line);
+      background:transparent;
+      color:var(--txt);
+      padding:7px 9px;
+      border-radius:11px;
+      cursor:pointer;
+    }
+
+    .cat-title{
+      font-weight:900;
+      font-size:16px;
+    }
+
+    /* ===== PRODOTTI ===== */
+    .items-card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:12px;
+      margin-top:8px;
+      overflow:hidden;
+    }
+
+    .item{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      padding:10px 12px;
+      border-top:1px solid #24262a;
+    }
+
+    .item:first-child{border-top:0;}
+
+    .left{min-width:0;}
+
+    .name{
+      font-weight:900;
+      font-size:15px;
+    }
+
+    .recipe{
+      color:var(--muted);
+      font-size:13px;
+      margin-top:4px;
+      line-height:1.3;
+    }
+
+    .price{
+      white-space:nowrap;
+      font-weight:900;
+      font-size:15px;
+    }
+
+    @media(max-width:520px){
+      .item{flex-direction:column;}
+      .price{align-self:flex-start;}
+    }
+
+    :root{scroll-padding-top:120px;}
   </style>
 </head>
+
 <body>
+
+  <!-- BADGE TEST: se NON lo vedi, Freedom Builder non usa questo file -->
+  <div style="position:fixed;right:8px;bottom:8px;z-index:9999;
+              background:#00d26a;color:#111;
+              font:700 12px/1 system-ui;
+              padding:6px 8px;border-radius:10px;
+              box-shadow:0 6px 14px rgba(0,0,0,.35)">
+    TEST v1
+  </div>
+
   <div class="wrap">
     <div class="stickyTop">
       <header>
@@ -264,92 +210,80 @@
     const subbar = document.getElementById('subbar');
     const stamp = document.getElementById('stamp');
 
-    let CURRENT_MENU = null;
     let selectedIdx = null;
 
-    function euro(v) {
-      if (v === null || v === undefined || v === '') return '';
-      const n = Number(v);
-      if (Number.isNaN(n)) return String(v);
-      return n.toFixed(n % 1 === 0 ? 0 : 2).replace('.', ',') + ' €';
+    function euro(v){
+      if(v===null||v===undefined||v==='')return '';
+      const n=Number(v);
+      if(Number.isNaN(n))return String(v);
+      return n.toFixed(n%1===0?0:2).replace('.',',')+' €';
     }
 
-    function updateActiveButtons() {
-      const buttons = viewCategories.querySelectorAll('.cat-btn');
-      buttons.forEach((b, i) => {
-        if (selectedIdx === i) b.classList.add('active');
-        else b.classList.remove('active');
+    function updateActiveButtons(){
+      document.querySelectorAll('.cat-btn').forEach((b,i)=>{
+        b.classList.toggle('active',selectedIdx===i);
       });
     }
 
-    function clearSelection() {
-      selectedIdx = null;
+    function clearSelection(){
+      selectedIdx=null;
       updateActiveButtons();
       subbar.classList.add('hidden');
-      subbar.innerHTML = '';
       viewItems.classList.add('hidden');
-      viewItems.innerHTML = '';
-      window.scrollTo({ top: 0, behavior: 'instant' });
+      viewItems.innerHTML='';
+      window.scrollTo({top:0,behavior:'instant'});
     }
 
-    function renderSubbar(MENU, idx) {
-      const cat = MENU.categories[idx];
-      if (!cat) return;
+    function renderSubbar(MENU,idx){
+      const cat=MENU.categories[idx];
+      subbar.innerHTML='';
+      const bar=document.createElement('div');
+      bar.className='backbar';
 
-      subbar.innerHTML = '';
-      const bar = document.createElement('div');
-      bar.className = 'backbar';
+      const back=document.createElement('button');
+      back.className='back-btn';
+      back.textContent='← Categorie';
+      back.onclick=clearSelection;
 
-      const back = document.createElement('button');
-      back.className = 'back-btn';
-      back.type = 'button';
-      back.textContent = '← Categorie';
-      back.addEventListener('click', clearSelection);
+      const title=document.createElement('div');
+      title.className='cat-title';
+      title.textContent=cat.name;
 
-      const title = document.createElement('div');
-      title.className = 'cat-title';
-      title.textContent = cat.name;
-
-      bar.appendChild(back);
-      bar.appendChild(title);
+      bar.append(back,title);
       subbar.appendChild(bar);
       subbar.classList.remove('hidden');
     }
 
-    function renderItems(MENU, idx) {
-      const cat = MENU.categories[idx];
-      if (!cat) return;
+    function renderItems(MENU,idx){
+      const cat=MENU.categories[idx];
+      viewItems.innerHTML='';
+      const card=document.createElement('div');
+      card.className='items-card';
 
-      viewItems.innerHTML = '';
+      (cat.items||[]).forEach(it=>{
+        const row=document.createElement('div');
+        row.className='item';
 
-      const card = document.createElement('div');
-      card.className = 'items-card';
+        const left=document.createElement('div');
+        left.className='left';
 
-      (cat.items || []).forEach((it) => {
-        const row = document.createElement('div');
-        row.className = 'item';
-
-        const left = document.createElement('div');
-        left.className = 'left';
-
-        const name = document.createElement('div');
-        name.className = 'name';
-        name.textContent = it.name;
+        const name=document.createElement('div');
+        name.className='name';
+        name.textContent=it.name;
         left.appendChild(name);
 
-        if (it.ingredients) {
-          const r = document.createElement('div');
-          r.className = 'recipe';
-          r.textContent = it.ingredients;
+        if(it.ingredients){
+          const r=document.createElement('div');
+          r.className='recipe';
+          r.textContent=it.ingredients;
           left.appendChild(r);
         }
 
-        const price = document.createElement('div');
-        price.className = 'price';
-        price.textContent = euro(it.price);
+        const price=document.createElement('div');
+        price.className='price';
+        price.textContent=euro(it.price);
 
-        row.appendChild(left);
-        row.appendChild(price);
+        row.append(left,price);
         card.appendChild(row);
       });
 
@@ -357,67 +291,36 @@
       viewItems.classList.remove('hidden');
     }
 
-    function renderCategories(MENU) {
-      CURRENT_MENU = MENU;
-      stamp.textContent = MENU?.generated_at ? ('Aggiornato: ' + MENU.generated_at.replace('T',' ')) : '';
+    function renderCategories(MENU){
+      stamp.textContent=MENU.generated_at?('Aggiornato: '+MENU.generated_at.replace('T',' ')):'';
+      viewCategories.innerHTML='';
+      const grid=document.createElement('div');
+      grid.className='cat-grid';
 
-      if (!MENU?.categories || !MENU.categories.length) {
-        viewCategories.innerHTML = '<p style="color:#b9bcc3">Nessun prodotto online.</p>';
-        clearSelection();
-        return;
-      }
-
-      viewCategories.innerHTML = '';
-
-      const grid = document.createElement('div');
-      grid.className = 'cat-grid';
-
-      MENU.categories.forEach((cat, idx) => {
-        const b = document.createElement('button');
-        b.className = 'cat-btn';
-        b.type = 'button';
-        b.textContent = cat.name;
-        b.addEventListener('click', () => showCategory(MENU, idx));
+      MENU.categories.forEach((cat,idx)=>{
+        const b=document.createElement('button');
+        b.className='cat-btn';
+        b.textContent=cat.name;
+        b.onclick=()=>{
+          selectedIdx=idx;
+          updateActiveButtons();
+          renderSubbar(MENU,idx);
+          renderItems(MENU,idx);
+          window.scrollTo({top:0,behavior:'instant'});
+        };
         grid.appendChild(b);
       });
 
       viewCategories.appendChild(grid);
-      updateActiveButtons();
-
-      // If a category was already selected (e.g. back/forward), re-render items
-      if (selectedIdx !== null && MENU.categories[selectedIdx]) {
-        renderSubbar(MENU, selectedIdx);
-        renderItems(MENU, selectedIdx);
-      } else {
-        subbar.classList.add('hidden');
-        viewItems.classList.add('hidden');
-      }
     }
 
-    function showCategory(MENU, idx) {
-      selectedIdx = idx;
-      updateActiveButtons();
-      renderSubbar(MENU, idx);
-      renderItems(MENU, idx);
-      window.scrollTo({ top: 0, behavior: 'instant' });
+    async function load(){
+      const r=await fetch(DATA_URL+'?v='+Date.now(),{cache:'no-store'});
+      const MENU=await r.json();
+      renderCategories(MENU);
     }
 
-    async function loadAndRender() {
-      try {
-        const bust = Date.now();
-        const resp = await fetch(`${DATA_URL}?v=${bust}`, {
-          cache: 'no-store',
-          headers: { 'Cache-Control': 'no-cache' },
-        });
-        if (!resp.ok) throw new Error('HTTP ' + resp.status);
-        const MENU = await resp.json();
-        renderCategories(MENU);
-      } catch (e) {
-        viewCategories.innerHTML = '<p style="color:#b9bcc3">Errore nel caricamento del menu. Riprova tra poco.</p>';
-      }
-    }
-
-    loadAndRender();
+    load();
   </script>
 </body>
 </html>
