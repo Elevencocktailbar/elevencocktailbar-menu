@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Menu - Eleven Cocktail Bar</title>
   <style>
     :root {
@@ -20,6 +20,7 @@
       margin:0;
       background:var(--bg);
       color:var(--txt);
+      padding-bottom: env(safe-area-inset-bottom);
     }
     .wrap { max-width: 980px; margin: 0 auto; padding: 18px; }
 
@@ -47,8 +48,8 @@
 
     /* Category buttons layout: like the original site
        - single buttons (no accordion)
-       - max 3 per row, wrapping based on label length
-       - SAME behavior on mobile and desktop (no forced single column) */
+       - max 3 per row (DESKTOP + MOBILE)
+       - responsive sizes on small screens */
     .cat-grid {
       display: flex;
       flex-wrap: wrap;
@@ -70,23 +71,20 @@
       box-shadow: var(--btnShadow);
       cursor: pointer;
       line-height: 1.15;
-      white-space: nowrap;
       font-size: clamp(13px, 2.2vw, 18px);
 
       /* Key: at most 3 per row */
       flex: 1 1 calc((100% - 28px) / 3);
       max-width: calc((100% - 28px) / 3);
       min-width: 110px;
+
+      /* allow nicer wrapping on small screens (overridden below) */
+      white-space: nowrap;
     }
-    /* Tiny screens: allow 2 per row if 3 would overflow */
-    @media (max-width: 360px) {
-      .cat-btn { flex-basis: calc((100% - 14px) / 2); max-width: calc((100% - 14px) / 2); }
-    }
+
     .cat-btn:active { transform: translateY(1px); }
-    .cat-btn.active {
-      /* subtle highlight for the selected category */
-      box-shadow: var(--btnShadow), 0 0 0 3px rgba(246,191,26,.35);
-    }
+
+    /* only one active rule (dedup) */
     .cat-btn.active {
       box-shadow: var(--btnShadow), 0 0 0 3px rgba(246,191,26,.35) inset;
     }
@@ -114,6 +112,71 @@
     @media (max-width: 520px) {
       .item { flex-direction: column; }
       .price { align-self: flex-start; }
+    }
+
+    /* ===== MOBILE FIT (mantiene layout, riduce spazi e rende leggibile) ===== */
+    @media (max-width: 520px){
+      /* meno bordi = meno “spazio bianco” percepito */
+      .wrap{ padding: 10px; }
+
+      .stickyTop{
+        padding-top: 10px;
+        padding-bottom: 8px;
+
+        /* riallinea l'estensione full-width della sticky area */
+        margin: -10px -10px 0;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+      header{ margin-bottom: 8px; gap: 8px; }
+      h1{ font-size: 22px; }
+      .stamp{ font-size: 11px; }
+
+      .cat-grid{
+        gap: 10px;
+        margin-top: 8px;
+      }
+
+      /* RESTA 3 per riga, ma più compatto e leggibile */
+      .cat-btn{
+        flex: 1 1 calc((100% - 20px) / 3);
+        max-width: calc((100% - 20px) / 3);
+        min-width: 0;                 /* importantissimo: evita overflow */
+
+        padding: 10px 8px;
+        border-radius: 16px;
+
+        font-size: 12px;              /* leggibile ma non enorme */
+        line-height: 1.05;
+
+        /* permette 2 righe */
+        white-space: normal;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+
+        min-height: 48px;
+      }
+
+      /* prodotti più compatti, così “entrano” meglio */
+      .items-card{ margin-top: 10px; }
+      .item{ padding: 12px; }
+      .name{ font-size: 16px; }
+      .recipe{ font-size: 14px; }
+      .price{ font-size: 16px; }
+    }
+
+    /* telefoni davvero piccoli: riduci ancora un filo */
+    @media (max-width: 380px){
+      .cat-btn{ font-size: 11.5px; min-height: 46px; }
+      h1{ font-size: 21px; }
+    }
+
+    /* evita che lo sticky copra la pagina quando scrolli/torni su */
+    @media (max-width: 520px){
+      :root{ scroll-padding-top: 140px; }
     }
   </style>
 </head>
@@ -297,3 +360,5 @@
   </script>
 </body>
 </html>
+
+
