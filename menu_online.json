@@ -1,19 +1,9 @@
 {
-  "generated_at": "2026-01-20T21:51:40",
+  "generated_at": "2026-01-21T21:13:39",
   "categories": [
     {
       "name": "DRINK DEL MESE",
       "items": [
-        {
-          "name": "GOLDEN HOUR",
-          "ingredients": "VODKA, SUCCO DI LIMONE, SUCCO DI PESCA, MIELE, FOAMER",
-          "price": 12.0
-        },
-        {
-          "name": "LYCHEE SUMMER",
-          "ingredients": "VODKA, SUCCO DI LIMONE, PASSOA, LYCHEE, FOAMER, LEMONSODA",
-          "price": 12.0
-        },
         {
           "name": "KIWI BLOOM",
           "ingredients": "GIN, FIORI DI SAMBUCO, SUCCO DI LIME, KIWI, SCIROPPO DI ZUCCHERO",
