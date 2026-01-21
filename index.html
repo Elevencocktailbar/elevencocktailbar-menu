@@ -178,6 +178,67 @@
     @media (max-width: 520px){
       :root{ scroll-padding-top: 140px; }
     }
+
+    /* ===== FINAL MOBILE FIX: più spazio ai prodotti (sticky più basso) ===== */
+    @media (max-width: 520px){
+      .wrap{ padding: 8px; }
+
+      .stickyTop{
+        padding-top: 8px;
+        padding-bottom: 6px;
+        margin: -8px -8px 0;
+        padding-left: 8px;
+        padding-right: 8px;
+
+        /* CHIAVE: non far “mangiare” tutto lo schermo allo sticky */
+        max-height: 52dvh;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      header{ margin-bottom: 6px; gap: 6px; }
+      h1{ font-size: 20px; }
+      .stamp{ font-size: 10px; }
+
+      .cat-grid{ gap: 8px; margin-top: 6px; }
+
+      .cat-btn{
+        flex: 1 1 calc((100% - 16px) / 3);
+        max-width: calc((100% - 16px) / 3);
+        min-width: 0;
+
+        padding: 8px 6px;
+        border-radius: 14px;
+        font-size: 11px;
+        line-height: 1.05;
+
+        white-space: normal;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+
+        min-height: 42px;
+      }
+
+      .back-btn{ padding: 7px 9px; border-radius: 11px; }
+      .cat-title{ font-size: 16px; }
+
+      .items-card{ margin-top: 8px; border-radius: 12px; }
+      .item{ padding: 10px 12px; }
+      .name{ font-size: 15px; }
+      .recipe{ font-size: 13px; line-height: 1.3; }
+      .price{ font-size: 15px; }
+
+      :root{ scroll-padding-top: 120px; }
+    }
+
+    @media (max-width: 380px){
+      .stickyTop{ max-height: 48dvh; }
+      .cat-btn{ font-size: 10.5px; min-height: 40px; }
+      h1{ font-size: 19px; }
+      :root{ scroll-padding-top: 115px; }
+    }
   </style>
 </head>
 <body>
@@ -360,5 +421,3 @@
   </script>
 </body>
 </html>
-
-
