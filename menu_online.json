@@ -1,16 +1,6 @@
 {
-  "generated_at": "2026-01-22T12:42:48",
+  "generated_at": "2026-01-22T13:41:54",
   "categories": [
-    {
-      "name": "DRINK DEL MESE",
-      "items": [
-        {
-          "name": "KIWI BLOOM",
-          "ingredients": "GIN, FIORI DI SAMBUCO, SUCCO DI LIME, KIWI, SCIROPPO DI ZUCCHERO",
-          "price": 12.0
-        }
-      ]
-    },
     {
       "name": "DRINK SPECIAL",
       "items": [
