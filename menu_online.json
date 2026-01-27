@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-01-27T23:15:18",
+  "generated_at": "2026-01-27T23:18:30",
   "categories": [
     {
       "name": "DRINK DEL MESE",
@@ -7,11 +7,6 @@
         {
           "name": "KIWI BLOOM",
           "ingredients": "GIN, FIORI DI SAMBUCO, SUCCO DI LIME, KIWI, SCIROPPO DI ZUCCHERO",
-          "price": 12.0
-        },
-        {
-          "name": "APPLE JAMES",
-          "ingredients": "WHISKEY JAMESON, SUCCO DI LIME, SCIROPPO DI ZUCCHERO, POLPA DI MELA",
           "price": 12.0
         }
       ]
