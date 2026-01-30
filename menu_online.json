@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-01-29T19:33:01",
+  "generated_at": "2026-01-30T17:11:17",
   "categories": [
     {
       "name": "DRINK DEL MESE",
       "items": [
         {
-          "name": "APPLE JAMES",
-          "ingredients": "WHISKEY JAMESON, SUCCO DI LIME, SCIROPPO DI ZUCCHERO, POLPA DI MELA",
+          "name": "KIWI BLOOM",
+          "ingredients": "GIN, FIORI DI SAMBUCO, SUCCO DI LIME, KIWI, SCIROPPO DI ZUCCHERO",
           "price": 12.0
         }
       ]
@@ -985,12 +985,12 @@
       "name": "VINO ROSSO",
       "items": [
         {
-          "name": "MONTEPULCIANO CALICE",
+          "name": "CHIANTI CALICE",
           "ingredients": "",
           "price": 6.0
         },
         {
-          "name": "MONTEPULCIANO BOTTIGLIA",
+          "name": "CHIANTI BOTTIGLIA",
           "ingredients": "",
           "price": 20.0
         },
