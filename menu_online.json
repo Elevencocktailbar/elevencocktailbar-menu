@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-01-30T17:11:17",
+  "generated_at": "2026-01-31T18:18:57",
   "categories": [
     {
       "name": "DRINK DEL MESE",
@@ -371,7 +371,7 @@
         },
         {
           "name": "PINA COLADA",
-          "ingredients": "RUM BIANCO, BATIDA DE COCO, SUCCO ANANAS",
+          "ingredients": "RUM BIANCO, BATIDA DE COCCO, SUCCO ANANAS",
           "price": 8.0
         },
         {
@@ -1173,11 +1173,6 @@
           "name": "CROSTONE PEPPA PIG",
           "ingredients": "CREMA DI PISTACCHIO E MORTADELLA",
           "price": 8.0
-        },
-        {
-          "name": "TAGLIERE ALTA TENSIONE",
-          "ingredients": "MORTADELLA GRIGLIATA, LIME, CREMA DI PISTACCHIO",
-          "price": 10.0
         },
         {
           "name": "CROSTONE DA CANTIERE",
