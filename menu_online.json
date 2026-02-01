@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-01-31T18:18:57",
+  "generated_at": "2026-02-01T13:51:12",
   "categories": [
     {
       "name": "DRINK DEL MESE",
       "items": [
         {
-          "name": "KIWI BLOOM",
-          "ingredients": "GIN, FIORI DI SAMBUCO, SUCCO DI LIME, KIWI, SCIROPPO DI ZUCCHERO",
+          "name": "APPLE JAMES",
+          "ingredients": "WHISKEY JAMESON, SUCCO DI LIME, SCIROPPO DI ZUCCHERO, POLPA DI MELA",
           "price": 12.0
         }
       ]
@@ -371,7 +371,7 @@
         },
         {
           "name": "PINA COLADA",
-          "ingredients": "RUM BIANCO, BATIDA DE COCCO, SUCCO ANANAS",
+          "ingredients": "RUM BIANCO, BATIDA DE COCO, SUCCO ANANAS",
           "price": 8.0
         },
         {
