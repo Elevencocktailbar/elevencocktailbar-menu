@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-01T16:04:52",
+  "generated_at": "2026-02-01T18:04:39",
   "categories": [
     {
       "name": "DRINK DEL MESE",
@@ -7,7 +7,7 @@
         {
           "name": "APPLE JAMES",
           "ingredients": "WHISKEY JAMESON, SUCCO DI LIME, SCIROPPO DI ZUCCHERO, POLPA DI MELA",
-          "price": 200.0
+          "price": 12.0
         }
       ]
     },
@@ -725,7 +725,7 @@
           "price": 24.0
         },
         {
-          "name": "N� 3",
+          "name": "N? 3",
           "ingredients": "",
           "price": 20.0
         },
