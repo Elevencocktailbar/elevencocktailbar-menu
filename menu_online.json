@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-12T20:12:09",
+  "generated_at": "2026-02-13T12:56:35",
   "categories": [
     {
       "name": "DRINK DEL MESE",
@@ -1168,6 +1168,11 @@
           "name": "CROSTONE PEPPA PIG",
           "ingredients": "CREMA DI PISTACCHIO E MORTADELLA",
           "price": 8.0
+        },
+        {
+          "name": "TAGLIERE ALTA TENSIONE",
+          "ingredients": "MORTADELLA GRIGLIATA, LIME, CREMA DI PISTACCHIO",
+          "price": 10.0
         },
         {
           "name": "CROSTONE DA CANTIERE",
