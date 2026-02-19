@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-13T21:54:07",
+  "generated_at": "2026-02-19T17:49:18",
   "categories": [
     {
       "name": "DRINK DEL MESE",
@@ -1036,11 +1036,6 @@
       "items": [
         {
           "name": "GRIMBERGEN BLONDE",
-          "ingredients": "",
-          "price": 6.0
-        },
-        {
-          "name": "FRANZISKANER",
           "ingredients": "",
           "price": 6.0
         },
