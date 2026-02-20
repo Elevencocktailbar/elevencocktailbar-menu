@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-19T17:49:18",
+  "generated_at": "2026-02-20T21:16:03",
   "categories": [
     {
       "name": "DRINK DEL MESE",
@@ -1040,6 +1040,11 @@
           "price": 6.0
         },
         {
+          "name": "FRANZISKANER",
+          "ingredients": "",
+          "price": 6.0
+        },
+        {
           "name": "CHIMAY RED",
           "ingredients": "",
           "price": 8.0
@@ -1188,11 +1193,6 @@
           "name": "BRUSCHETTONE LINEA DI FUSIONE",
           "ingredients": "RUCOLA, SPECK, POMODORINO GIALLO E ROSSO, SCAMORZA",
           "price": 8.0
-        },
-        {
-          "name": "BRUSCHETTONE FUSIONE SOLARE",
-          "ingredients": "BRUSCHETTONE CON POMODORINI GIALLI E ROSSI",
-          "price": 6.0
         }
       ]
     }
