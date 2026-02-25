@@ -1196,9 +1196,10 @@
       "kind": "static",
       "button_color": "#2aa8ff",
       "button_text_color": "#081018",
-      "image": "assets/allergeni.jpg",
+      "image": "https://assets.cdn.filesafe.space/z8m9OaakKwT8g8JiHqxV/media/699e4eddfc2a806b23333575.jpg",
       "title": "Allergeni",
       "text": "\"Le informazioni circa la presenza di sostanze o prodotti che provocano allergie o intolleranze, sono disponibili rivolgendosi al personale in servizio\" - reg. (UE) 1169/2011 e s.m."
     }
   ]
+
 }
