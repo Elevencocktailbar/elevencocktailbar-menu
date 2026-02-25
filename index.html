@@ -174,6 +174,37 @@
     }
 
     :root{scroll-padding-top:120px;}
+
+    /* ===== PAGINA STATICA (ALLERGENI) ===== */
+    .static-card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:12px;
+      margin-top:8px;
+      overflow:hidden;
+      padding:12px;
+    }
+
+    .static-img{
+      width:100%;
+      height:auto;
+      display:block;
+      border-radius:10px;
+      border:1px solid #24262a;
+    }
+
+    .static-title{
+      font-weight:900;
+      font-size:16px;
+      margin:10px 0 6px;
+    }
+
+    .static-text{
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.35;
+      white-space:pre-wrap;
+    }
   </style>
 </head>
 
@@ -257,6 +288,38 @@
     function renderItems(MENU,idx){
       const cat=MENU.categories[idx];
       viewItems.innerHTML='';
+
+      // ===== Categoria statica (ALLERGENI) =====
+      if (cat.kind === 'static') {
+
+        const box=document.createElement('div');
+        box.className='static-card';
+
+        if(cat.image){
+          const img=document.createElement('img');
+          img.className='static-img';
+          img.src=cat.image;
+          img.alt=cat.title||cat.name||'';
+          box.appendChild(img);
+        }
+
+        const title=document.createElement('div');
+        title.className='static-title';
+        title.textContent=cat.title||cat.name||'';
+        box.appendChild(title);
+
+        if(cat.text){
+          const t=document.createElement('div');
+          t.className='static-text';
+          t.textContent=cat.text;
+          box.appendChild(t);
+        }
+
+        viewItems.appendChild(box);
+        viewItems.classList.remove('hidden');
+        return;
+      }
+
       const card=document.createElement('div');
       card.className='items-card';
 
@@ -301,6 +364,11 @@
         const b=document.createElement('button');
         b.className='cat-btn';
         b.textContent=cat.name;
+
+        // Colore custom del pulsante (ALLERGENI)
+        if (cat.button_color) b.style.background = cat.button_color;
+        if (cat.button_text_color) b.style.color = cat.button_text_color;
+
         b.onclick=()=>{
           selectedIdx=idx;
           updateActiveButtons();
