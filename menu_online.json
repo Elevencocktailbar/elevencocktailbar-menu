@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-25T01:59:20",
+  "generated_at": "2026-02-25T13:24:24",
   "categories": [
     {
       "name": "DRINK DEL MESE",
@@ -1188,6 +1188,11 @@
           "name": "BRUSCHETTONE LINEA DI FUSIONE",
           "ingredients": "RUCOLA, SPECK, POMODORINO GIALLO E ROSSO, SCAMORZA",
           "price": 8.0
+        },
+        {
+          "name": "BRUSCHETTONE FUSIONE SOLARE",
+          "ingredients": "BRUSCHETTONE CON POMODORINI GIALLI E ROSSI",
+          "price": 6.0
         }
       ]
     },
@@ -1196,10 +1201,9 @@
       "kind": "static",
       "button_color": "#2aa8ff",
       "button_text_color": "#081018",
-      "image": "https://assets.cdn.filesafe.space/z8m9OaakKwT8g8JiHqxV/media/699e4eddfc2a806b23333575.jpg",
+      "image": "assets/allergeni.jpg",
       "title": "Allergeni",
-      "text": "\"Le informazioni circa la presenza di sostanze o prodotti che provocano allergie o intolleranze, sono disponibili rivolgendosi al personale in servizio\" - reg. (UE) 1169/2011 e s.m."
+      "text": "\"Le informazioni circa la presenza di sostanze o prodotti che provocano allergie o intolleranze, sono disponibili rivolgendosi al personale in servizi\" - reg. (UE) 1169/2011 e s.m."
     }
   ]
-
 }
