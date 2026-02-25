@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-22T18:31:17",
+  "generated_at": "2026-02-25T01:59:20",
   "categories": [
     {
       "name": "DRINK DEL MESE",
@@ -1190,6 +1190,15 @@
           "price": 8.0
         }
       ]
+    },
+    {
+      "name": "ALLERGENI",
+      "kind": "static",
+      "button_color": "#2aa8ff",
+      "button_text_color": "#081018",
+      "image": "assets/allergeni.jpg",
+      "title": "Allergeni",
+      "text": "\"Le informazioni circa la presenza di sostanze o prodotti che provocano allergie o intolleranze, sono disponibili rivolgendosi al personale in servizio\" - reg. (UE) 1169/2011 e s.m."
     }
   ]
 }
