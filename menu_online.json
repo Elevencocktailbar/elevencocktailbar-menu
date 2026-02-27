@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-25T13:24:24",
+  "generated_at": "2026-02-27T20:42:33",
   "categories": [
     {
       "name": "DRINK DEL MESE",
@@ -995,16 +995,6 @@
           "price": 20.0
         },
         {
-          "name": "PRIMITIVO CALICE",
-          "ingredients": "",
-          "price": 6.0
-        },
-        {
-          "name": "PRIMITIVO BOTTIGLIA",
-          "ingredients": "",
-          "price": 20.0
-        },
-        {
           "name": "NERO DI TROIA CALICE",
           "ingredients": "",
           "price": 6.0
@@ -1034,6 +1024,11 @@
     {
       "name": "BIRRE",
       "items": [
+        {
+          "name": "GRIMBERGEN BLONDE",
+          "ingredients": "",
+          "price": 6.0
+        },
         {
           "name": "FRANZISKANER",
           "ingredients": "",
@@ -1203,7 +1198,7 @@
       "button_text_color": "#081018",
       "image": "assets/allergeni.jpg",
       "title": "Allergeni",
-      "text": "\"Le informazioni circa la presenza di sostanze o prodotti che provocano allergie o intolleranze, sono disponibili rivolgendosi al personale in servizi\" - reg. (UE) 1169/2011 e s.m."
+      "text": "\"Le informazioni circa la presenza di sostanze o prodotti che provocano allergie o intolleranze, sono disponibili rivolgendosi al personale in servizio\" - reg. (UE) 1169/2011 e s.m."
     }
   ]
 }
