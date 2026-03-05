@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-02-27T20:42:33",
+  "generated_at": "2026-03-05T19:09:50",
   "categories": [
     {
       "name": "DRINK DEL MESE",
       "items": [
         {
-          "name": "APPLE JAMES",
-          "ingredients": "WHISKEY JAMESON, SUCCO DI LIME, SCIROPPO DI ZUCCHERO, POLPA DI MELA",
+          "name": "NIGHT FOUNDRY",
+          "ingredients": "JIM BEAM, VERMOUTH BIANCO, TRIPLE SEC, KAHLUA, BITTER CIOCCOLATO",
           "price": 12.0
         }
       ]
@@ -995,6 +995,16 @@
           "price": 20.0
         },
         {
+          "name": "PRIMITIVO CALICE",
+          "ingredients": "",
+          "price": 6.0
+        },
+        {
+          "name": "PRIMITIVO BOTTIGLIA",
+          "ingredients": "",
+          "price": 20.0
+        },
+        {
           "name": "NERO DI TROIA CALICE",
           "ingredients": "",
           "price": 6.0
@@ -1024,11 +1034,6 @@
     {
       "name": "BIRRE",
       "items": [
-        {
-          "name": "GRIMBERGEN BLONDE",
-          "ingredients": "",
-          "price": 6.0
-        },
         {
           "name": "FRANZISKANER",
           "ingredients": "",
