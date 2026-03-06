@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-05T19:09:50",
+  "generated_at": "2026-03-06T18:56:16",
   "categories": [
     {
       "name": "DRINK DEL MESE",
@@ -982,41 +982,6 @@
       ]
     },
     {
-      "name": "VINO ROSSO",
-      "items": [
-        {
-          "name": "CHIANTI CALICE",
-          "ingredients": "",
-          "price": 6.0
-        },
-        {
-          "name": "CHIANTI BOTTIGLIA",
-          "ingredients": "",
-          "price": 20.0
-        },
-        {
-          "name": "PRIMITIVO CALICE",
-          "ingredients": "",
-          "price": 6.0
-        },
-        {
-          "name": "PRIMITIVO BOTTIGLIA",
-          "ingredients": "",
-          "price": 20.0
-        },
-        {
-          "name": "NERO DI TROIA CALICE",
-          "ingredients": "",
-          "price": 6.0
-        },
-        {
-          "name": "NERO DI TROIA BOTTIGLIA",
-          "ingredients": "",
-          "price": 20.0
-        }
-      ]
-    },
-    {
       "name": "PROSECCO",
       "items": [
         {
@@ -1163,11 +1128,6 @@
           "name": "BRUSCHETTONE PEPPA PIG",
           "ingredients": "CREMA DI PISTACCHIO E MORTADELLA",
           "price": 8.0
-        },
-        {
-          "name": "TAGLIERE ALTA TENSIONE",
-          "ingredients": "MORTADELLA GRIGLIATA, LIME, CREMA DI PISTACCHIO",
-          "price": 10.0
         },
         {
           "name": "BRUSCHETTONE DA CANTIERE",
