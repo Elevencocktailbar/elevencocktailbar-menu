@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-06T23:09:27",
+  "generated_at": "2026-03-12T15:29:53",
   "categories": [
     {
       "name": "DRINK DEL MESE",
@@ -982,6 +982,41 @@
       ]
     },
     {
+      "name": "VINO ROSSO",
+      "items": [
+        {
+          "name": "CHIANTI CALICE",
+          "ingredients": "",
+          "price": 6.0
+        },
+        {
+          "name": "CHIANTI BOTTIGLIA",
+          "ingredients": "",
+          "price": 20.0
+        },
+        {
+          "name": "PRIMITIVO CALICE",
+          "ingredients": "",
+          "price": 6.0
+        },
+        {
+          "name": "PRIMITIVO BOTTIGLIA",
+          "ingredients": "",
+          "price": 20.0
+        },
+        {
+          "name": "NERO DI TROIA CALICE",
+          "ingredients": "",
+          "price": 6.0
+        },
+        {
+          "name": "NERO DI TROIA BOTTIGLIA",
+          "ingredients": "",
+          "price": 20.0
+        }
+      ]
+    },
+    {
       "name": "PROSECCO",
       "items": [
         {
@@ -1000,11 +1035,6 @@
       "name": "BIRRE",
       "items": [
         {
-          "name": "GRIMBERGEN BLONDE",
-          "ingredients": "",
-          "price": 6.0
-        },
-        {
           "name": "FRANZISKANER",
           "ingredients": "",
           "price": 6.0
@@ -1018,6 +1048,11 @@
           "name": "LA CHOUFFE",
           "ingredients": "",
           "price": 8.0
+        },
+        {
+          "name": "LOWENBRAU BLONDE",
+          "ingredients": "",
+          "price": 6.0
         }
       ]
     },
@@ -1135,6 +1170,11 @@
           "price": 8.0
         },
         {
+          "name": "TAGLIERE ALTA TENSIONE",
+          "ingredients": "MORTADELLA GRIGLIATA, LIME, CREMA DI PISTACCHIO",
+          "price": 10.0
+        },
+        {
           "name": "BRUSCHETTONE DA CANTIERE",
           "ingredients": "CREMA DI OLIVE NERE E SALAME MILANO",
           "price": 8.0
@@ -1171,5 +1211,4 @@
       "text": "\"Le informazioni circa la presenza di sostanze o prodotti che provocano allergie o intolleranze, sono disponibili rivolgendosi al personale in servizio\" - reg. (UE) 1169/2011 e s.m."
     }
   ]
-
 }
