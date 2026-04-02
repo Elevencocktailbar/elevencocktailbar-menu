@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-03-29T21:48:37",
+  "generated_at": "2026-04-02T18:42:03",
   "categories": [
     {
       "name": "DRINK DEL MESE",
       "items": [
         {
-          "name": "NIGHT FOUNDRY",
-          "ingredients": "JIM BEAM, VERMOUTH BIANCO, TRIPLE SEC, KAHLUA, BITTER CIOCCOLATO",
+          "name": "AMBER TWIST",
+          "ingredients": "JIM BEAM, TEQUILA SCURA, SUCCO DI LIMONE, GRANATINA, FOAMER",
           "price": 12.0
         }
       ]
@@ -1177,6 +1177,11 @@
         {
           "name": "BRUSCHETTONE DA CANTIERE",
           "ingredients": "CREMA DI OLIVE NERE E SALAME MILANO",
+          "price": 8.0
+        },
+        {
+          "name": "BRUSCHETTONE CARLINGA DEL PORCINO",
+          "ingredients": "CREMA DI FUNGHI PORCINI E PANCETTA ARROTOLATA",
           "price": 8.0
         },
         {
