@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-10T19:33:21",
+  "generated_at": "2026-04-10T21:33:14",
   "categories": [
     {
       "name": "DRINK DEL MESE",
@@ -991,16 +991,6 @@
         },
         {
           "name": "CHIANTI BOTTIGLIA",
-          "ingredients": "",
-          "price": 20.0
-        },
-        {
-          "name": "PRIMITIVO CALICE",
-          "ingredients": "",
-          "price": 6.0
-        },
-        {
-          "name": "PRIMITIVO BOTTIGLIA",
           "ingredients": "",
           "price": 20.0
         },
