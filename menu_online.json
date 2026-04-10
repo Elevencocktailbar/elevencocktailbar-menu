@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-03T20:51:25",
+  "generated_at": "2026-04-10T19:33:21",
   "categories": [
     {
       "name": "DRINK DEL MESE",
@@ -1048,11 +1048,6 @@
           "name": "LA CHOUFFE",
           "ingredients": "",
           "price": 8.0
-        },
-        {
-          "name": "LOWENBRAU BLONDE",
-          "ingredients": "",
-          "price": 6.0
         }
       ]
     },
@@ -1177,11 +1172,6 @@
         {
           "name": "BRUSCHETTONE DA CANTIERE",
           "ingredients": "CREMA DI OLIVE NERE E SALAME MILANO",
-          "price": 8.0
-        },
-        {
-          "name": "BRUSCHETTONE CARLINGA DEL PORCINO",
-          "ingredients": "CREMA DI FUNGHI PORCINI E PANCETTA ARROTOLATA",
           "price": 8.0
         },
         {
