@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-10T21:33:14",
+  "generated_at": "2026-04-17T18:19:14",
   "categories": [
     {
       "name": "DRINK DEL MESE",
@@ -1038,6 +1038,11 @@
           "name": "LA CHOUFFE",
           "ingredients": "",
           "price": 8.0
+        },
+        {
+          "name": "LEFFE BLONDE",
+          "ingredients": "",
+          "price": 6.0
         }
       ]
     },
@@ -1173,11 +1178,6 @@
           "name": "BRUSCHETTONE LINEA DI FUSIONE",
           "ingredients": "RUCOLA, SPECK, POMODORINO GIALLO E ROSSO, SCAMORZA",
           "price": 8.0
-        },
-        {
-          "name": "BRUSCHETTONE SOLE E FUOCO",
-          "ingredients": "BRUSCHETTONE CON POMODORINI GIALLI E ROSSI",
-          "price": 6.0
         }
       ]
     },
