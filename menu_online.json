@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-17T22:20:05",
+  "generated_at": "2026-04-24T18:24:24",
   "categories": [
     {
       "name": "DRINK DEL MESE",
@@ -998,11 +998,6 @@
           "name": "NERO DI TROIA CALICE",
           "ingredients": "",
           "price": 6.0
-        },
-        {
-          "name": "NERO DI TROIA BOTTIGLIA",
-          "ingredients": "",
-          "price": 20.0
         }
       ]
     },
@@ -1162,6 +1157,11 @@
         {
           "name": "BRUSCHETTONE DA CANTIERE",
           "ingredients": "CREMA DI OLIVE NERE E SALAME MILANO",
+          "price": 8.0
+        },
+        {
+          "name": "BRUSCHETTONE CARLINGA DEL PORCINO",
+          "ingredients": "CREMA DI FUNGHI PORCINI E PANCETTA ARROTOLATA",
           "price": 8.0
         },
         {
