@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-02T22:53:06",
+  "generated_at": "2026-05-09T18:12:26",
   "categories": [
     {
       "name": "DRINK DEL MESE",
@@ -1141,12 +1141,12 @@
       "items": [
         {
           "name": "TAGLIERE BANCO DA LAVORO",
-          "ingredients": "MORTADELLA, SPIANATA PICCANTE, SALAME NAPOLI, SALAME MILANO, PANCETTA, FORMAGGIO PICCANTE, FUNGHI MISTI",
+          "ingredients": "MORTADELLA, SALAME PICCANTE, SALAME NAPOLI, SPECK, PANCETTA, FORMAGGIO, FUNGHI MISTI",
           "price": 15.0
         },
         {
           "name": "BRUSCHETTONE 4 CILINDRI",
-          "ingredients": "SPICCHIO CREMA DI PISTACCHIO E MORTADELLA, SPICCHIO CREMA OLIVE NERE E SALAME MILANO, SPICCHIO CREMA FUNGHI PORCINI E PANCETTA, SPICCHIO CREMA DI PEPERONI, SPIANATA PICCANTE E SCAMORZA DOLCE",
+          "ingredients": "SPICCHIO CREMA DI PISTACCHIO E MORTADELLA, SPICCHIO CREMA OLIVE NERE E SALAME NAPOLI, SPICCHIO FUNGHI ALLA CONTADINA, PANCETTA ARROTOLATA E SCAMORZA DOLCE, SPICCHIO CREMA DI PEPERONI, SPIANATA PICCANTE E SCAMORZA DOLCE",
           "price": 10.0
         },
         {
@@ -1156,12 +1156,12 @@
         },
         {
           "name": "BRUSCHETTONE DA CANTIERE",
-          "ingredients": "CREMA DI OLIVE NERE E SALAME MILANO",
+          "ingredients": "CREMA DI OLIVE NERE E SALAME NAPOLI",
           "price": 8.0
         },
         {
           "name": "BRUSCHETTONE CARLINGA DEL PORCINO",
-          "ingredients": "CREMA DI FUNGHI PORCINI E PANCETTA ARROTOLATA",
+          "ingredients": "FUNGHI ALLA CONTADINA, PANCETTA ARROTOLATA E SCAMORZA DOLCE",
           "price": 8.0
         },
         {
@@ -1171,8 +1171,13 @@
         },
         {
           "name": "BRUSCHETTONE LINEA DI FUSIONE",
-          "ingredients": "RUCOLA, SPECK, POMODORINO GIALLO E ROSSO, SCAMORZA",
+          "ingredients": "RUCOLA, SPECK, POMODORINO ROSSO E SCAMORZA",
           "price": 8.0
+        },
+        {
+          "name": "BRUSCHETTONE SOLE E FUOCO",
+          "ingredients": "BRUSCHETTONE CON POMODORINI ROSSI",
+          "price": 6.0
         }
       ]
     },
