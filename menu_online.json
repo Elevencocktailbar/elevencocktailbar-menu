@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-09T21:27:07",
+  "generated_at": "2026-05-10T18:26:08",
   "categories": [
     {
       "name": "DRINK DEL MESE",
@@ -1136,12 +1136,12 @@
       "items": [
         {
           "name": "TAGLIERE BANCO DA LAVORO",
-          "ingredients": "MORTADELLA, SALAME PICCANTE, SALAME NAPOLI, SPECK, PANCETTA, FORMAGGIO, FUNGHI MISTI",
+          "ingredients": "MORTADELLA, SPIANATA PICCANTE, SALAME NAPOLI, SALAME MILANO, PANCETTA, FORMAGGIO SEMIPICCANTE, FUNGHI MISTI",
           "price": 15.0
         },
         {
           "name": "BRUSCHETTONE 4 CILINDRI",
-          "ingredients": "SPICCHIO CREMA DI PISTACCHIO E MORTADELLA, SPICCHIO CREMA OLIVE NERE E SALAME NAPOLI, SPICCHIO FUNGHI ALLA CONTADINA, PANCETTA ARROTOLATA E SCAMORZA DOLCE, SPICCHIO CREMA DI PEPERONI, SPIANATA PICCANTE E SCAMORZA DOLCE",
+          "ingredients": "SPICCHIO CREMA DI PISTACCHIO E MORTADELLA, SPICCHIO CREMA OLIVE NERE E SALAME MILANO, SPICCHIO CREMA FUNGHI PORCINI, PANCETTA ARROTOLATA E SCAMORZA DOLCE, SPICCHIO CREMA DI PEPERONI, SPIANATA PICCANTE E SCAMORZA DOLCE",
           "price": 10.0
         },
         {
@@ -1151,22 +1151,22 @@
         },
         {
           "name": "BRUSCHETTONE DA CANTIERE",
-          "ingredients": "CREMA DI OLIVE NERE E SALAME NAPOLI",
+          "ingredients": "CREMA DI OLIVE NERE E SALAME MILANO",
           "price": 8.0
         },
         {
           "name": "BRUSCHETTONE CARLINGA DEL PORCINO",
-          "ingredients": "FUNGHI ALLA CONTADINA, PANCETTA ARROTOLATA E SCAMORZA DOLCE",
+          "ingredients": "CREMA FUNGHI PORCINI, PANCETTA ARROTOLATA E SCAMORZA DOLCE",
           "price": 8.0
         },
         {
           "name": "BRUSCHETTONE LINEA DI FUSIONE",
-          "ingredients": "RUCOLA, SPECK, POMODORINO ROSSO E SCAMORZA",
+          "ingredients": "RUCOLA, SPECK, POMODORINO GIALLO E ROSSO E SCAMORZA",
           "price": 8.0
         },
         {
           "name": "BRUSCHETTONE SOLE E FUOCO",
-          "ingredients": "BRUSCHETTONE CON POMODORINI ROSSI",
+          "ingredients": "BRUSCHETTONE CON POMODORINI GIALLE E ROSSI",
           "price": 6.0
         }
       ]
