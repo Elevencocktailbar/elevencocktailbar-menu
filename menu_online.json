@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-14T14:46:39",
+  "generated_at": "2026-07-14T18:14:22",
   "categories": [
     {
       "name": "DRINK SPECIAL",
@@ -937,6 +937,31 @@
       ]
     },
     {
+      "name": "VINO BIANCO",
+      "items": [
+        {
+          "name": "PECORINO CALICE",
+          "ingredients": "",
+          "price": 6.0
+        },
+        {
+          "name": "PECORINO BOTTIGLIA",
+          "ingredients": "",
+          "price": 20.0
+        },
+        {
+          "name": "PASSERINA CALICE",
+          "ingredients": "",
+          "price": 6.0
+        },
+        {
+          "name": "PASSERINA BOTTIGLIA",
+          "ingredients": "",
+          "price": 20.0
+        }
+      ]
+    },
+    {
       "name": "PROSECCO",
       "items": [
         {
@@ -982,7 +1007,7 @@
         {
           "name": "ANALCOLICO A FRUTTA",
           "ingredients": "",
-          "price": 50.0
+          "price": 7.0
         },
         {
           "name": "VIRGIN MOJITO",
