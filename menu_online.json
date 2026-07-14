@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-04T18:59:48",
+  "generated_at": "2026-07-14T14:46:39",
   "categories": [
     {
       "name": "DRINK SPECIAL",
@@ -937,61 +937,6 @@
       ]
     },
     {
-      "name": "VINO BIANCO",
-      "items": [
-        {
-          "name": "CHARDONNAY CALICE",
-          "ingredients": "",
-          "price": 6.0
-        },
-        {
-          "name": "CHARDONNAY BOTTIGLIA",
-          "ingredients": "",
-          "price": 20.0
-        },
-        {
-          "name": "PECORINO CALICE",
-          "ingredients": "",
-          "price": 6.0
-        },
-        {
-          "name": "PECORINO BOTTIGLIA",
-          "ingredients": "",
-          "price": 20.0
-        },
-        {
-          "name": "PASSERINA CALICE",
-          "ingredients": "",
-          "price": 6.0
-        },
-        {
-          "name": "PASSERINA BOTTIGLIA",
-          "ingredients": "",
-          "price": 20.0
-        }
-      ]
-    },
-    {
-      "name": "VINO ROSSO",
-      "items": [
-        {
-          "name": "CHIANTI CALICE",
-          "ingredients": "",
-          "price": 6.0
-        },
-        {
-          "name": "CHIANTI BOTTIGLIA",
-          "ingredients": "",
-          "price": 20.0
-        },
-        {
-          "name": "NERO DI TROIA CALICE",
-          "ingredients": "",
-          "price": 6.0
-        }
-      ]
-    },
-    {
       "name": "PROSECCO",
       "items": [
         {
@@ -1037,7 +982,7 @@
         {
           "name": "ANALCOLICO A FRUTTA",
           "ingredients": "",
-          "price": 7.0
+          "price": 50.0
         },
         {
           "name": "VIRGIN MOJITO",
