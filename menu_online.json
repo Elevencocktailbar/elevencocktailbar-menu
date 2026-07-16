@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-16T01:56:04",
+  "generated_at": "2026-07-17T00:11:35",
   "categories": [
     {
       "name": "DRINK SPECIAL",
@@ -933,51 +933,6 @@
           "name": "MEZCAL JOVEN",
           "ingredients": "",
           "price": 14.0
-        }
-      ]
-    },
-    {
-      "name": "VINO BIANCO",
-      "items": [
-        {
-          "name": "PECORINO CALICE",
-          "ingredients": "",
-          "price": 6.0
-        },
-        {
-          "name": "PECORINO BOTTIGLIA",
-          "ingredients": "",
-          "price": 20.0
-        },
-        {
-          "name": "PASSERINA CALICE",
-          "ingredients": "",
-          "price": 6.0
-        },
-        {
-          "name": "PASSERINA BOTTIGLIA",
-          "ingredients": "",
-          "price": 20.0
-        }
-      ]
-    },
-    {
-      "name": "VINO ROSSO",
-      "items": [
-        {
-          "name": "CHIANTI CALICE",
-          "ingredients": "",
-          "price": 6.0
-        },
-        {
-          "name": "CHIANTI BOTTIGLIA",
-          "ingredients": "",
-          "price": 20.0
-        },
-        {
-          "name": "NERO DI TROIA CALICE",
-          "ingredients": "",
-          "price": 6.0
         }
       ]
     },
