@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-13T20:16:23",
+  "generated_at": "2026-11-13T20:17:23",
   "categories": [
     {
       "name": "DRINK SPECIAL",
@@ -945,16 +945,6 @@
           "price": 6
         },
         {
-          "name": "PECORINO CALICE",
-          "ingredients": "",
-          "price": 6
-        },
-        {
-          "name": "PECORINO BOTTIGLIA",
-          "ingredients": "",
-          "price": 20
-        },
-        {
           "name": "PASSERINA BOTTIGLIA",
           "ingredients": "",
           "price": 20
@@ -970,14 +960,9 @@
           "price": 6
         },
         {
-          "name": "CHIANTI BOTTIGLIA",
+          "name": "NERO DI TROIA BOTTIGLIA",
           "ingredients": "",
-          "price": 20
-        },
-        {
-          "name": "CHIANTI CALICE",
-          "ingredients": "",
-          "price": 6
+          "price": 20.0
         }
       ]
     },
