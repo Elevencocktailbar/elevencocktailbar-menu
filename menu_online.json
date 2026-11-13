@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-06T19:20:08",
+  "generated_at": "2026-11-13T20:16:23",
   "categories": [
     {
       "name": "DRINK SPECIAL",
@@ -937,6 +937,51 @@
       ]
     },
     {
+      "name": "VINO BIANCO",
+      "items": [
+        {
+          "name": "PASSERINA CALICE",
+          "ingredients": "",
+          "price": 6
+        },
+        {
+          "name": "PECORINO CALICE",
+          "ingredients": "",
+          "price": 6
+        },
+        {
+          "name": "PECORINO BOTTIGLIA",
+          "ingredients": "",
+          "price": 20
+        },
+        {
+          "name": "PASSERINA BOTTIGLIA",
+          "ingredients": "",
+          "price": 20
+        }
+      ]
+    },
+    {
+      "name": "VINO ROSSO",
+      "items": [
+        {
+          "name": "NERO DI TROIA CALICE",
+          "ingredients": "",
+          "price": 6
+        },
+        {
+          "name": "CHIANTI BOTTIGLIA",
+          "ingredients": "",
+          "price": 20
+        },
+        {
+          "name": "CHIANTI CALICE",
+          "ingredients": "",
+          "price": 6
+        }
+      ]
+    },
+    {
       "name": "PROSECCO",
       "items": [
         {
@@ -968,11 +1013,6 @@
           "name": "FRANZISKANER",
           "ingredients": "",
           "price": 6
-        },
-        {
-          "name": "BECK'S",
-          "ingredients": "",
-          "price": 4.0
         }
       ]
     },
