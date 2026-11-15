@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-13T20:17:23",
+  "generated_at": "2026-11-15T21:57:28",
   "categories": [
     {
       "name": "DRINK SPECIAL",
@@ -962,7 +962,7 @@
         {
           "name": "NERO DI TROIA BOTTIGLIA",
           "ingredients": "",
-          "price": 20.0
+          "price": 20
         }
       ]
     },
@@ -998,6 +998,16 @@
           "name": "FRANZISKANER",
           "ingredients": "",
           "price": 6
+        },
+        {
+          "name": "BECK'S",
+          "ingredients": "",
+          "price": 4.0
+        },
+        {
+          "name": "LA CHOUFFE",
+          "ingredients": "",
+          "price": 8.0
         }
       ]
     },
