@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-15T21:57:28",
+  "generated_at": "2026-11-24T20:34:12",
   "categories": [
     {
       "name": "DRINK SPECIAL",
@@ -472,7 +472,7 @@
         {
           "name": "WHITE RUSSIAN",
           "ingredients": "VODKA, KAHLUA, PANNA",
-          "price": 8
+          "price": 8.0
         },
         {
           "name": "MIDORI SOUR",
@@ -502,7 +502,7 @@
         {
           "name": "NEGROSKY",
           "ingredients": "VODKA, CAMPARI, VERMOUTH ROSSO",
-          "price": 8
+          "price": 8.0
         },
         {
           "name": "VODKA LEMON",
@@ -512,7 +512,7 @@
         {
           "name": "ORANGE BLOSSOM",
           "ingredients": "GIN, SUCCO D'ARANCIA",
-          "price": 8
+          "price": 8.0
         },
         {
           "name": "GIN SOUR",
@@ -633,6 +633,11 @@
           "name": "VODKA TONIC",
           "ingredients": "VODKA, KINLEY TONICA",
           "price": 8
+        },
+        {
+          "name": "ORGASM",
+          "ingredients": "COINTREAU, BAILEYS, GRAND MARNIER",
+          "price": 8.0
         }
       ]
     },
@@ -1000,14 +1005,14 @@
           "price": 6
         },
         {
-          "name": "BECK'S",
+          "name": "BECK'",
           "ingredients": "",
-          "price": 4.0
+          "price": 4
         },
         {
           "name": "LA CHOUFFE",
           "ingredients": "",
-          "price": 8.0
+          "price": 8
         }
       ]
     },
